@@ -1,17 +1,28 @@
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import org.json.simple.parser.ParseException;
+
+import javax.ws.rs.*;
+import java.io.IOException;
 
 // The Java class will be hosted at the URI path "/app"
 @Path("/app")
 public class AppHandler {
+
+    public AppHandler() {
+    }
+
     // The Java method will process HTTP GET requests
+//    @Consumes(MediaType.TEXT_PLAIN)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("/{stateName}")
+//    public String getState(@PathParam("stateName") String stateName) throws IOException, ParseException {
+//        String test =DatabaseSimulator.test();
+//        return test;
+//    }
     @GET
-    // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
     public String getState() {
-        // Return some cliched textual content
-        System.out.println("\n\n\n\n\nHI\n\n\n\n");
-        return "New York";
+        DatabaseSimulator databaseSimulator = new DatabaseSimulator();
+        String test =databaseSimulator.stateName;
+        return test;
     }
 }
