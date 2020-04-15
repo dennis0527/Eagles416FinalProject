@@ -296,8 +296,8 @@
 
 
 <script type="text/javascript" src="us-states.js"></script>
-<script type="text/javascript" src="counties.js"></script>
-<script type="text/javascript" src="congressional.js"></script>
+<script type="text/javascript" src="counties.json"></script>
+<script type="text/javascript" src="congressional.json"></script>
 <script type="text/javascript" src="MD_data.json"></script>
 
 <script type="text/javascript" src="label/src/Label.js"></script>
@@ -312,7 +312,7 @@
     // TESTFUNCT
     $("#testRestButton").click(function(){
         $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app", function(data, status){
-
+            alert("Data: " + data + "\nStatus: " + status);
         });
     });
     // TESTFUNCT
