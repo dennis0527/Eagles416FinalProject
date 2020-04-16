@@ -6,20 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/election_data_quality_eagles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/election_data_quality_eagles.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/AppHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/AppHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet-src.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet-src.esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet-src.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet-src.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/leaflet/leaflet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/AppHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/AppHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/eagles.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/eagles.html" afterDir="false" />
-    </list>
+    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
