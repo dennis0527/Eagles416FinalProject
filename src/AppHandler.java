@@ -1,7 +1,9 @@
 import org.json.simple.parser.ParseException;
-
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.awt.*;
 import java.io.IOException;
+
 
 // The Java class will be hosted at the URI path "/app"
 @Path("/app")
@@ -19,10 +21,9 @@ public class AppHandler {
 //        return test;
 //    }
     @GET
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
     public String getState() {
-        DatabaseSimulator databaseSimulator = new DatabaseSimulator();
-        String test =databaseSimulator.stateName;
-        return test;
+        String result = DatabaseSimulator.getStateJson();
+        return result;
     }
 }

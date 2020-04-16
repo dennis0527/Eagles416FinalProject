@@ -309,10 +309,12 @@
 <!-- <div id = "label"><button onclick="addMarker();">toggle marker mode</button></div>
 <div id = "affiliation"><button onclick="affiliation();">toggle affiliation highlight</button></div> -->
 <script>
+    // var statesData;
+
     // TESTFUNCT
-    $("#testRestButton").click(function(){
+    $( "#testRestButton" ).click(function(){
         $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app", function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+            alert("Data: " + data.toString() + "\nStatus: " + status)
         });
     });
     // TESTFUNCT
