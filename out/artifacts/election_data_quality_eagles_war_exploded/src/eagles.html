@@ -17,6 +17,10 @@
             statesData = data;
             console.log("JQUERY");
         });
+        // $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(precinct, status){
+        //     marylandData = precinct;
+        //     console.log("JQUERY");
+        // });
     </script>
 </head>
 <body>
@@ -304,7 +308,7 @@
 <!--<script type="text/javascript" src="us-states.json"></script>-->
 <script type="text/javascript" src="counties.json"></script>
 <script type="text/javascript" src="congressional.json"></script>
-<script type="text/javascript" src="MD_data.json"></script>
+<!--<script type="text/javascript" src="MD_data.json"></script>-->
 
 <script type="text/javascript" src="label/src/Label.js"></script>
 
@@ -1092,6 +1096,9 @@
         }
 
         else if (chosenState == "Maryland") {
+            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+                alert("Data: " + JSON.stringify(data) + "\nStatus: " + status)
+            });
             map.flyTo([39.04, -76.64], 7.5);
         }
 
