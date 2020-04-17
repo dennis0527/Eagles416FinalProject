@@ -26,4 +26,11 @@ public class AppHandler {
         String result = DatabaseSimulator.getStateJson();
         return result;
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/Precinct/{stateName}")
+    public String getPrecinctData(@PathParam("stateName") String name) {
+        return DatabaseSimulator.getPrecinctJson(name);
+    }
 }

@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="JAX-RS-2.1.1" />
           <element id="file-copy" path="$USER_HOME$/CSE 416/json-simple-1.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/Desktop/json-simple-1.1.jar" />
         </element>
       </element>
     </root>
