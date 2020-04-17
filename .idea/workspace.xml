@@ -6,23 +6,21 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/AppHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/AppHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/AppHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/AppHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" afterDir="false" />
-    </list>
+    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1835">
+            <state relative-caret-position="19380">
               <caret line="1140" column="52" selection-start-line="1140" selection-start-column="52" selection-end-line="1140" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#nav#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -43,15 +41,6 @@
                 <element signature="n#style#0;n#h3#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#9#15#0" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="e#0#7#0" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="e#0#7#0" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="e#0#7#0" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="e#0#7#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="680">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#714#715#0" expanded="true" />
@@ -74,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="798">
+              <caret line="70" column="5" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="70" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/src/congressional_json.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-341">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="306">
+              <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -352,7 +341,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1475000" />
+    <option name="totallyTimeSpent" value="1586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -509,7 +498,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1835">
+        <state relative-caret-position="19380">
           <caret line="1140" column="52" selection-start-line="1140" selection-start-column="52" selection-end-line="1140" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#a#0;n#nav#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -530,23 +519,14 @@
             <element signature="n#style#0;n#h3#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#9#15#0" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="e#0#7#0" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="e#0#7#0" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="e#0#7#0" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="e#0#7#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="680">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#714#715#0" expanded="true" />
@@ -557,15 +537,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/congressional_json.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="306">
+          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="798">
+          <caret line="70" column="5" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="70" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
