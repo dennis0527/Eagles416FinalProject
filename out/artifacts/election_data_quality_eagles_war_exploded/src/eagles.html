@@ -12,6 +12,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    <script>
+            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app", function(data, status){
+                statesData = data;
+                console.log("JQUERY");
+            });
+    </script>
 </head>
 <body>
 <div class="container-fluid">
@@ -295,7 +301,7 @@
 <!--TEST FOR REST-->
 
 
-<script type="text/javascript" src="us-states.json"></script>
+<!--<script type="text/javascript" src="us-states.json"></script>-->
 <script type="text/javascript" src="counties.json"></script>
 <script type="text/javascript" src="congressional.json"></script>
 <script type="text/javascript" src="MD_data.json"></script>
@@ -309,15 +315,9 @@
 <!-- <div id = "label"><button onclick="addMarker();">toggle marker mode</button></div>
 <div id = "affiliation"><button onclick="affiliation();">toggle affiliation highlight</button></div> -->
 <script>
-    // var statesData;
+    // TESTFUNCT
 
-    // TESTFUNCT
-    $( "#testRestButton" ).click(function(){
-        $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app", function(data, status){
-            alert("Data: " + data.toString() + "\nStatus: " + status)
-        });
-    });
-    // TESTFUNCT
+    console.log("AFTER JQUERY");
 
     /* Create US map using leaflet api and us-states.json data of coordinates */
     var map = L.map('map').setView([37.8, -96], 4);
@@ -345,6 +345,7 @@
     var marylandToggle = 0;
 
     /* Add data to respective layer group */
+
     var statesJson = L.geoJson(statesData).addTo(statesLayers);
     var congressJson = L.geoJson(congressData).addTo(congressLayers);
     var countyJson = L.geoJson(countyData).addTo(countyLayers);
