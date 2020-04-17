@@ -57,7 +57,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try{
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/web/src/congressional.json");
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/web/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
