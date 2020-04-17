@@ -33,4 +33,11 @@ public class AppHandler {
     public String getPrecinctData(@PathParam("stateName") String name) {
         return DatabaseSimulator.getPrecinctJson(name);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{stateName}/Districts")
+    public String getDistricts(@PathParam("stateName") String name){
+        return DatabaseSimulator.getCongressionalDistricts(name);
+    }
 }

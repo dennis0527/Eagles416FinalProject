@@ -52,4 +52,21 @@ public class DatabaseSimulator {
 
     }
 
+    public static String getCongressionalDistricts(String stateName){
+        JSONParser parser = new JSONParser();
+
+        try{
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/web/src/congressional_json.json");
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+            return jsonObject.toString();
+
+
+        }catch(Exception e){
+            System.out.println("\n\n\n\n\n" + e.toString());
+            return e.toString();
+        }
+
+    }
+
 }
