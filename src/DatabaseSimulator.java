@@ -1,3 +1,4 @@
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -11,7 +12,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -33,4 +34,39 @@ public class DatabaseSimulator {
         }
     }
 
+    public static String getPrecinctJson(String stateName) {
+        JSONParser parser = new JSONParser();
+        try {
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/Preprocessing/416_Preprocessing/MD/MD_data.json");
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            String result = "";
+
+            result = jsonObject.toString();
+
+            return result;
+        }
+
+        catch (Exception e) {
+            System.out.println("\n\n\n\n\n" + e.toString());
+            return e.toString();
+        }
+
+    }
+
+    public static String getCongressionalDistricts(String stateName){
+        JSONParser parser = new JSONParser();
+
+        try{
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/web/src/congressional.json");
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+            return jsonObject.toString();
+
+
+        }catch(Exception e){
+            System.out.println("\n\n\n\n\n" + e.toString());
+            return e.toString();
+        }
+
+    }
 }
