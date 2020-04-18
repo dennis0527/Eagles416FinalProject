@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -36,7 +36,7 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         JSONParser parser = new JSONParser();
         try {
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_data_raw.json");
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_data_raw.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -58,7 +58,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try{
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/congressional_json.json");
+            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
@@ -69,6 +69,36 @@ public class DatabaseSimulator {
             return e.toString();
         }
 
+    }
+
+    public static String getNeighbors(String stateName, String precinctName){
+
+        JSONParser parser = new JSONParser();
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_neighbors.txt"));
+            String line = reader.readLine();
+
+            while(line != null){
+
+                String precinct = line.substring(0, line.indexOf(":"));
+                if(precinct.equalsIgnoreCase(precinctName)){
+
+                    return line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
+
+                }
+
+                //read next line
+                line = reader.readLine();
+
+            }
+
+            return null;
+
+        }catch(Exception e){
+            System.out.println("\n\n\n\n" + e.toString());
+            return e.toString();
+        }
     }
 
 }

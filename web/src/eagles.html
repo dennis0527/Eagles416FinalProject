@@ -1004,29 +1004,73 @@
             But I'm not totally sure. Possibly change data to the 18 versions if we figure out what that means. */
         /* TODO: Add in the other races */
         if(marylandToggle){
+            var neighbors;
+
             if(chosenData == "Population Data") {
                 legend.addTo(map);
-                this._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
-                    '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>'
-                    + '<h5><i>Source: US Census</i>' //dummy data to remove
-                    : 'Hover over a state');
+                var ref = this;
+                if(props){
+                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $.get(neighbors_url, function(data, status){
+                        neighbors = data.neighbors;
+                        ref._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
+                            '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                            + '<h5><i>Source: US Census</i>' //dummy data to remove
+                            : 'Hover over a state');
+
+                    });
+
+                }
+                // this._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
+                //     '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>'
+                //     + '<h5><i>Source: US Census</i>' //dummy data to remove
+                //     : 'Hover over a state');
             }
             if(chosenData == "Demographic Data") {
                 map.removeControl(legend);
-                this._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                    '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                    '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                    '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
-                    + '<h5><i>Source: US Census</i>' //dummy data to remove
-                    : 'Hover over a precinct');
+                var ref = this;
+                if(props){
+                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $.get(neighbors_url, function(data, status){
+                        neighbors = data.neighbors;
+                        ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
+                            '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                            '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                            '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
+                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                            + '<h5><i>Source: US Census</i>' //dummy data to remove
+                            : 'Hover over a precinct');
+
+                    });
+                }
+                // this._div.innerHTML = '<h4>Demographics</h4>' + (props ?
+                //     '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                //     '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                //     '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
+                //     + '<h5><i>Source: US Census</i>' //dummy data to remove
+                //     : 'Hover over a precinct');
             }
             if(chosenData == "Election Data") {
                 map.removeControl(legend);
-                this._div.innerHTML = '<h4>Election</h4>' + (props ?
-                    '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
-                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R)/(props.USH16D + props.USH16R))*100).toFixed(2) + '%'
-                    + '<h5><i>Source: Maryland State Board of Elections</i>'
-                    : 'Hover over a precinct');
+                var ref = this;
+                if(props){
+                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $.get(neighbors_url, function(data, status){
+                        neighbors = data.neighbors;
+                        ref._div.innerHTML = '<h4>Election</h4>' + (props ?
+                            '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
+                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R)/(props.USH16D + props.USH16R))*100).toFixed(2) + '%'
+                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                            + '<h5><i>Source: Maryland State Board of Elections</i>'
+                            : 'Hover over a precinct');
+
+                    });
+                }
+                // this._div.innerHTML = '<h4>Election</h4>' + (props ?
+                //     '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
+                //     '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R)/(props.USH16D + props.USH16R))*100).toFixed(2) + '%'
+                //     + '<h5><i>Source: Maryland State Board of Elections</i>'
+                //     : 'Hover over a precinct');
             }
         }
     };

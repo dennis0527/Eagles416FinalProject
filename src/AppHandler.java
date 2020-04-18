@@ -40,4 +40,11 @@ public class AppHandler {
     public String getDistricts(@PathParam("stateName") String name){
         return DatabaseSimulator.getCongressionalDistricts(name);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{stateName}/{precinctName}/neighbors")
+    public String getNeighbors(@PathParam("stateName") String state, @PathParam("precinctName") String precinct){
+        return DatabaseSimulator.getNeighbors(state, precinct.replaceAll("%20", " "));
+    }
 }
