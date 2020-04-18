@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -36,7 +36,7 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         JSONParser parser = new JSONParser();
         try {
-            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_data_raw.json");
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_data_raw.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -46,6 +46,23 @@ public class DatabaseSimulator {
         }
 
         catch (Exception e) {
+            System.out.println("\n\n\n\n\n" + e.toString());
+            return e.toString();
+        }
+
+    }
+
+    public static String getCongressionalDistricts(String stateName){
+        JSONParser parser = new JSONParser();
+
+        try{
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/congressional_json.json");
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+            return jsonObject.toString();
+
+
+        }catch(Exception e){
             System.out.println("\n\n\n\n\n" + e.toString());
             return e.toString();
         }

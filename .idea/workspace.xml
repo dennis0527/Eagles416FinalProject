@@ -6,9 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="-Added database simulator that reads JSON file and prints to front end">
+    <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/web/src/eagles.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/eagles.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/DatabaseSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseSimulator.java" afterDir="false" />
+>>>>>>> 03cd4bc403457e78f84c9534cc7e0194de311fa2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +61,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
@@ -161,11 +166,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="TomEE Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="TomEE Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
