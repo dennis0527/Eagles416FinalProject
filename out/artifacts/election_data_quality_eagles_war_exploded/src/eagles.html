@@ -13,14 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
-        $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app", function(data, status){
-            statesData = data;
-            console.log("JQUERY");
-        });
-        // $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-        //     marylandData = data;
-        //     console.log("MARYLAND JQUERY");
-        // });
     </script>
 </head>
 <body>
@@ -28,7 +20,8 @@
     <div class="row">
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" style="color: white;">Election Data Quality</a>
-
+            <a class="navbar-brand" style="color: white;"><div class="hide-loader" id="loader">
+            </div></a>
         </nav>
     </div>
     <div class="row" style="height: 512px;">
@@ -254,10 +247,10 @@
 <div class="row">
     <div class="col-lg-2">
         <div class="dropdown">
-            <select id="data" onchange="changeData()" class="form-control">
+            <select id="data" onchange="changeData();alterStyleData()" class="form-control">
                 <option selected disabled value="0">Choose view level:</option>
                 <option value="1" >State</option>
-                <option value="2">County</option>
+<!--                <option value="2">County</option>-->
                 <option value="3" >Congress</option>
                 <option value="4">Precinct</option>
             </select>
@@ -265,7 +258,7 @@
     </div>
     <div class="col-lg-2">
         <div class="dropdown_state">
-            <select id="state_change" onchange="changeStateView()" class="form-control">
+            <select id="state_change" onchange="changeStateView();alterStyleData()" class="form-control">
                 <option selected disabled value="0">Choose state:</option>
                 <option value="1">Florida</option>
                 <option value="2">Maryland</option>
@@ -307,8 +300,8 @@
 
 <!--<script type="text/javascript" src="us-states.json"></script>-->
 <script type="text/javascript" src="counties.json"></script>
-<script type="text/javascript" src="congressional.json"></script>
-<script type="text/javascript" src="MD_data.json"></script>
+<!--<script type="text/javascript" src="congressional.json"></script>-->
+<!--<script type="text/javascript" src="MD_data.json"></script>-->
 
 <script type="text/javascript" src="marker.js"></script>
 
@@ -316,6 +309,24 @@
 <!-- <div id = "label"><button onclick="addMarker();">toggle marker mode</button></div>
 <div id = "affiliation"><button onclick="affiliation();">toggle affiliation highlight</button></div> -->
 <script>
+    var mapData;
+    var mapLayers;
+    var mapJson;
+    $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
+        $('#loader').addClass("loader").removeClass("hide-loader");
+        mapData = data;
+        /* Create layer groups for state, county, and congress*/
+        mapLayers = L.layerGroup().addTo(map);
+
+        /* Add data to respective layer group */
+        mapJson = L.geoJson(mapData).addTo(mapLayers);
+        /* Add default style and UX to each layer */
+        mapJson = L.geoJson(mapData, {
+            style: defaultStyle,
+            onEachFeature: onEachFeature
+        }).addTo(mapLayers);
+        $('#loader').addClass("hide-loader").removeClass("loader");
+    });
     // TESTFUNCT
 
     console.log("AFTER JQUERY");
@@ -333,54 +344,14 @@
         zoomOffset: -1
     }).addTo(map);
 
-    /* Create layer groups for state, county, and congress*/
-    var congressLayers = L.layerGroup().addTo(map);
-    var statesLayers = L.layerGroup().addTo(map);
-    var countyLayers = L.layerGroup().addTo(map);
-    var marylandLayers = L.layerGroup().addTo(map);
 
-    /* Set state on at first */
-    var statesToggle = 1;
-    var congressToggle = 0;
-    var countyToggle = 0;
-    var marylandToggle = 0;
-
-    /* Add data to respective layer group */
-
-    var statesJson = L.geoJson(statesData).addTo(statesLayers);
-    var congressJson = L.geoJson(congressData).addTo(congressLayers);
-    var countyJson = L.geoJson(countyData).addTo(countyLayers);
-    var marylandJson = L.geoJson(marylandData).addTo(marylandLayers);
-
-    /* Get color of state based on their population density, darker is more dense */
-    // function getPopulationColor(d, num) {
-    //     return d > num ? '#800026' :
-    //         d > num*.3  ? '#BD0026' :
-    //             d > num*.15  ? '#E31A1C' :
-    //                 d > num*.1  ? '#FC4E2A' :
-    //                     d > num*.05   ? '#FD8D3C' :
-    //                         d > num*.02   ? '#FEB24C' :
-    //                             d > num*.01   ? '#FED976' :
-    //                                 '#FFEDA0';
-    // }
+    statesToggle = 1;
 
     function statePopColor(d) {
         return d > 500 ? '#800026' :
             d > 400  ? '#E31A1C' :
                 d > 300   ? '#FD8D3C' :
                     '#FFEDA0';
-    }
-
-    /* Get color of congressional district based on their census area, darker is bigger */
-    function countyPopColor(c) {
-        return c > 75000 ? '#800026' :
-            c > 50000  ? '#BD0026' :
-                c > 25000  ? '#E31A1C' :
-                    c > 20000  ? '#FC4E2A' :
-                        c > 10000   ? '#FD8D3C' :
-                            c > 5000   ? '#FEB24C' :
-                                c > 500   ? '#FED976' :
-                                    '#FFEDA0';
     }
 
     /* Get color of congresional based on their census area, darker is bigger */
@@ -590,18 +561,7 @@
 
     /* Take away highlight on mouseout */
     function resetHighlight(e) {
-        if(statesToggle){
-            statesJson.resetStyle(e.target);
-        }
-        if(congressToggle) {
-            congressJson.resetStyle(e.target);
-        }
-        if(countyToggle) {
-            countyJson.resetStyle(e.target);
-        }
-        if(marylandToggle) {
-            marylandJson.resetStyle(e.target);
-        }
+        mapJson.resetStyle(e.target);
         info.update();
     }
 
@@ -686,108 +646,134 @@
         }
     }
 
-    /* Add default style and UX to each layer */
-    statesJson = L.geoJson(statesData, {
-        style: defaultStyle,
-        onEachFeature: onEachFeature
-    }).addTo(statesLayers);
-
-    congressJson = L.geoJson(congressData, {
-        style: defaultStyle,
-        onEachFeature: onEachFeature
-    }).addTo(congressLayers);
-
-    countyJson = L.geoJson(countyData, {
-        style: defaultStyle,
-        onEachFeature: onEachFeature
-    }).addTo(countyLayers);
-
-    marylandJson = L.geoJson(marylandData, {
-        style: defaultStyle,
-        onEachFeature: onEachFeature
-    }).addTo(marylandLayers);
 
     function alterStyleData() {
         var e = document.getElementById("data_type_select");
         var chosenData = e.options[e.selectedIndex].text;
 
-        /* Can use this for dynamic code when we figure that out*/
-        // if (statesToggle) {
-        //     layer = statesLayers;
-        //     json = statesJson;
-        //     data = statesData;
-        // }
-        // else if (congressToggle) {
-        //     layer = congressLayers;
-        //     json = congressJson;
-        //     data = congressData;
-        // }
+        // if (chosenData == "Election Data") {
+        //     map.removeControl(legend);
+        //     e = document.getElementById("election_select");
+        //     e.style.display = "block";
+        //     var chosenElection = e.options[e.selectedIndex].text;
+        //     if (chosenElection == "2016 Congressional Election") {
+        //         if(statesToggle) {
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: styleElectionSenate16,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
+        //         if(marylandToggle){
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: styleElectionSenate16,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
+        //     }
+        //     else if (chosenElection == "2018 Congressional Election") {
+        //         if(statesToggle){
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: styleElectionSenate18,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
+        //         if(marylandToggle){
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: marylandHouse18,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
+        //     }
+        //     else if (chosenElection == "2016 Presidential Election") {
+        //         if(statesToggle) {
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: styleElectionPres,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
         //
-        // else if (countyToggle) {
-        //     layer = countyLayers;
-        //     json = countyJson;
-        //     data = countyData;
+        //         if(marylandToggle){
+        //             mapLayers.removeLayer(mapJson);
+        //             mapJson = L.geoJson(mapData, {
+        //                 style: marylandPres16,
+        //                 onEachFeature: onEachFeature
+        //             }).addTo(mapLayers);
+        //         }
+        //     }
         // }
-        //
-        // else if (marylandToggle) {
-        //     layer = marylandLayers;
-        //     json = marylandJson;
-        //     data = marylandData;
-        // }
-
         if (chosenData == "Election Data") {
             map.removeControl(legend);
             e = document.getElementById("election_select");
             e.style.display = "block";
             var chosenElection = e.options[e.selectedIndex].text;
-            if (chosenElection == "2016 Congressional Election") {
-                if(statesToggle) {
-                    statesLayers.removeLayer(statesJson);
-                    statesJson = L.geoJson(statesData, {
-                        style: styleElectionSenate16,
-                        onEachFeature: onEachFeature
-                    }).addTo(statesLayers);
-                }
-                if(marylandToggle){
-                    marylandLayers.removeLayer(marylandJson);
-                    marylandJson = L.geoJson(marylandData, {
-                        style: styleHouse16,
-                        onEachFeature: onEachFeature
-                    }).addTo(marylandLayers);
-                }
-            }
-            else if (chosenElection == "2018 Congressional Election") {
-                if(statesToggle){
-                    statesLayers.removeLayer(statesJson);
-                    statesJson = L.geoJson(statesData, {
-                        style: styleElectionSenate18,
-                        onEachFeature: onEachFeature
-                    }).addTo(statesLayers);
-                }
-                if(marylandToggle){
-                    marylandLayers.removeLayer(marylandJson);
-                    marylandJson = L.geoJson(marylandData, {
-                        style: marylandHouse18,
-                        onEachFeature: onEachFeature
-                    }).addTo(marylandLayers);
-                }
-            }
-            else if (chosenElection == "2016 Presidential Election") {
-                if(statesToggle) {
-                    statesLayers.removeLayer(statesJson);
-                    statesJson = L.geoJson(statesData, {
-                        style: styleElectionPres,
-                        onEachFeature: onEachFeature
-                    }).addTo(statesLayers);
-                }
+            console.log("Maryland Toggle: " + marylandToggle);
+            console.log("States toggle: " + statesToggle);
+            if(marylandToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+                    $('#loader').addClass("loader");
+                    $('#loader').removeClass("hide-loader");
 
-                if(marylandToggle){
-                    marylandLayers.removeLayer(marylandJson);
-                    marylandJson = L.geoJson(marylandData, {
-                        style: marylandPres16,
-                        onEachFeature: onEachFeature
-                    }).addTo(marylandLayers);
-                }
+                    mapData = data;
+                    if (chosenElection == "2016 Congressional Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: styleHouse16,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    else if (chosenElection == "2018 Congressional Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: marylandHouse18,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    else if (chosenElection == "2016 Presidential Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: marylandPres16,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    $('#loader').addClass("hide-loader");
+                    $('#loader').removeClass("loader");
+
+                });
+            }
+            else if(statesToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
+                    mapData = data;
+                    if (chosenElection == "2016 Congressional Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: styleElectionSenate16,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    else if (chosenElection == "2018 Congressional Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: styleElectionSenate18,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    else if (chosenElection == "2016 Presidential Election") {
+                        mapLayers.removeLayer(mapJson);
+                        mapJson = L.geoJson(mapData, {
+                            style: styleElectionPres,
+                            onEachFeature: onEachFeature
+                        }).addTo(mapLayers);
+                    }
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
             }
         }
         else if(chosenData == "Demographic Data"){
@@ -795,11 +781,43 @@
             e = document.getElementById("election_select");
             e.style.display = "none";
 
-            marylandLayers.removeLayer(marylandJson);
-            marylandJson = L.geoJson(marylandData, {
-                style: styleDemographics,
-                onEachFeature: onEachFeature
-            }).addTo(marylandLayers);
+            if(statesToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
+                    mapData = data;
+                    mapLayers.removeLayer(mapJson);
+                    mapJson = L.geoJson(mapData, {
+                        style: styleDemographics,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
+            }
+            else if(congressToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
+                    mapData = data;
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
+            }
+            else if(marylandToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
+                    mapData = data;
+                    mapLayers.removeLayer(mapJson);
+                    mapJson = L.geoJson(mapData, {
+                        style: styleDemographics,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
+            }
         }
         else if(chosenData == "Population Data"){
             // legend.addTo(map);
@@ -807,46 +825,66 @@
             e = document.getElementById("election_select");
             e.style.display = "none";
 
-            statesLayers.removeLayer(statesJson);
-            statesJson = L.geoJson(statesData, {
-                style: style,
-                onEachFeature: onEachFeature
-            }).addTo(statesLayers);
+            if(statesToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
 
+                    mapData = data;
+                    mapLayers.removeLayer(mapJson);
+                    mapJson = L.geoJson(mapData, {
+                        style: style,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                    $('#loader').addClass("hide-loader").removeClass("loader");
 
-            countyLayers.removeLayer(countyJson);
-            countyJson = L.geoJson(countyData, {
-                style: style2,
-                onEachFeature: onEachFeature
-            }).addTo(countyLayers);
+                });
 
-            congressLayers.removeLayer(congressJson);
-            congressJson = L.geoJson(congressData, {
-                style: style3,
-                onEachFeature: onEachFeature
-            }).addTo(congressLayers);
+            }
+            else if(congressToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
 
-            marylandLayers.removeLayer(marylandJson);
-            marylandJson = L.geoJson(marylandData, {
-                style: style4,
-                onEachFeature: onEachFeature
-            }).addTo(marylandLayers);
+                    mapData = data;
+                    mapLayers.removeLayer(mapJson);
+                    mapJson = L.geoJson(mapData, {
+                        style: style3,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
+
+            }
+            else if(marylandToggle){
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
+                    mapData = data;
+                    mapLayers.removeLayer(mapJson);
+                    mapJson = L.geoJson(mapData, {
+                        style: style4,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                    $('#loader').addClass("hide-loader").removeClass("loader");
+
+                });
+            }
         }
         else {
             e = document.getElementById("election_select");
             e.style.display = "none";
-            statesLayers.removeLayer(statesJson);
-            statesJson = L.geoJson(statesData, {
+            mapLayers.removeLayer(mapJson);
+            mapJson = L.geoJson(mapData, {
                 style: style,
                 onEachFeature: onEachFeature
-            }).addTo(statesLayers);
+            }).addTo(mapLayers);
         }
     }
 
     /* Start out the map in state form */
-    map.removeLayer(congressLayers);
-    map.removeLayer(countyLayers);
-    map.removeLayer(marylandLayers);
+    statesToggle = 1;
+    congressToggle = 0;
+    marylandToggle = 0;
 
     /* Changes layers based on which data style is selected */
     function changeData() {
@@ -857,29 +895,8 @@
 
         switch(dataTxt){
             case 'State':
-                map.removeLayer(countyLayers);
-                countyToggle = 0;
-                map.removeLayer(congressLayers);
                 congressToggle = 0;
-                map.addLayer(statesLayers);
                 statesToggle = 1;
-                map.removeLayer(marylandLayers);
-                marylandToggle = 0;
-                document.getElementById("InnerGhostPrecinct").style.display = "none";
-                document.getElementById("WarningGhostPrecinct").style.display = "block";
-                document.getElementById("InnerCombinePrecinct").style.display = "none";
-                document.getElementById("WarningCombinePrecinct").style.display = "block";
-                document.getElementById("InnerAddPrecinct").style.display = "none";
-                document.getElementById("WarningAddPrecinct").style.display = "block";
-                break;
-            case 'County':
-                map.removeLayer(statesLayers);
-                statesToggle = 0;
-                map.removeLayer(congressLayers);
-                congressToggle = 0;
-                map.addLayer(countyLayers);
-                countyToggle = 1;
-                map.removeLayer(marylandLayers);
                 marylandToggle = 0;
                 document.getElementById("InnerGhostPrecinct").style.display = "none";
                 document.getElementById("WarningGhostPrecinct").style.display = "block";
@@ -889,13 +906,8 @@
                 document.getElementById("WarningAddPrecinct").style.display = "block";
                 break;
             case 'Congress':
-                map.removeLayer(statesLayers);
                 statesToggle = 0;
-                map.removeLayer(countyLayers);
-                countyToggle = 0;
-                map.addLayer(congressLayers);
                 congressToggle = 1;
-                map.removeLayer(marylandLayers);
                 marylandToggle = 0;
                 document.getElementById("InnerGhostPrecinct").style.display = "none";
                 document.getElementById("WarningGhostPrecinct").style.display = "block";
@@ -905,14 +917,10 @@
                 document.getElementById("WarningAddPrecinct").style.display = "block";
                 break;
             case 'Precinct':
-                map.removeLayer(statesLayers);
                 statesToggle = 0;
-                map.removeLayer(countyLayers);
-                countyToggle = 0;
-                map.removeLayer(congressLayers);
                 congressToggle = 0;
-                map.addLayer(marylandLayers);
                 marylandToggle = 1;
+                console.log(marylandToggle);
                 document.getElementById("InnerGhostPrecinct").style.display = "block";
                 document.getElementById("WarningGhostPrecinct").style.display = "none";
                 document.getElementById("InnerCombinePrecinct").style.display = "block";
@@ -990,13 +998,6 @@
                 + '<h5><i>Source: US Census</i>' //dummy data to remove
                 : 'Hover over a congressional district');
         }
-        if(countyToggle){
-            legend.addTo(map);
-            this._div.innerHTML = '<h4>Census Area</h4>' +  (props ?
-                '<b>' + props.NAME + '</b><br />' + props.CENSUSAREA + ' people / mi<sup>2</sup>'
-                + '<h5><i>Source: US Census</i>' //dummy data to remove
-                : 'Hover over a county');
-        }
 
         /* Calculates demographic percent by doing adjusted population of race divided by total adjusted population times 100. */
         /* On mine it says the variables aren't found for some reason but they obviously are there so I just ignored it. */
@@ -1012,11 +1013,15 @@
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
                     $.get(neighbors_url, function(data, status){
+                        $('#loader').addClass("loader").removeClass("hide-loader");
+
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
                             '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: US Census</i>' //dummy data to remove
                             : 'Hover over a state');
+                        $('#loader').addClass("hide-loader").removeClass("loader");
+
 
                     });
 
@@ -1032,6 +1037,8 @@
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
                     $.get(neighbors_url, function(data, status){
+                        $('#loader').addClass("loader").removeClass("hide-loader");
+
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
                             '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
@@ -1040,6 +1047,7 @@
                             + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: US Census</i>' //dummy data to remove
                             : 'Hover over a precinct');
+                        $('#loader').addClass("hide-loader").removeClass("loader");
 
                     });
                 }
@@ -1056,6 +1064,8 @@
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
                     $.get(neighbors_url, function(data, status){
+                        $('#loader').addClass("loader").removeClass("hide-loader");
+
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Election</h4>' + (props ?
                             '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
@@ -1063,6 +1073,7 @@
                             + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: Maryland State Board of Elections</i>'
                             : 'Hover over a precinct');
+                        $('#loader').addClass("hide-loader").removeClass("loader");
 
                     });
                 }
@@ -1096,15 +1107,6 @@
             }
         }
         if(congressToggle){
-            grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
-            for (var i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + congressPopColor((grades[i] + 1)) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-            }
-        }
-
-        if(countyToggle){
             grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
             for (var i = 0; i < grades.length; i++) {
                 div.innerHTML +=
@@ -1204,36 +1206,38 @@
         map.flyTo([39.657, -77.575], 10);
     }
 
-    $("#state_change").change(function(){
-        if($('#data option:selected').text() == "Precinct"){
-            if(this.value == 2){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    alert("Precinct Data: " + JSON.stringify(data) + "\nStatus: " + status)
-                });
-            }
-        }
-        else if($('#data option:selected').text() == "Congress"){
-            if(this.value == 2){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
-                    alert("District Data: " + JSON.stringify(data) + "\nStatus: " + status)
-                });
-            }
-        }
-    });
-    $("#data").change(function(){
-        if($('#state_change option:selected').text() == "Maryland"){
-            if(this.value == 4){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    alert("Precinct Data: " + JSON.stringify(data) + "\nStatus: " + status)
-                });
-            }
-            if(this.value == 3){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    alert("District Data: " + JSON.stringify(data) + "\nStatus: " + status)
-                });
-            }
-        }
-    });
+    // $("#state_change").change(function(){
+    //     if($('#data option:selected').text() == "Precinct"){
+    //         if(this.value == 2){
+    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+    //                 mapData = data;
+    //             });
+    //         }
+    //     }
+    //     else if($('#data option:selected').text() == "Congress"){
+    //         if(this.value == 2){
+    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
+    //                 mapData = data;
+    //             });
+    //         }
+    //     }
+    // });
+    // $("#data").change(function(){
+    //     if($('#state_change option:selected').text() == "Maryland"){
+    //         if(this.value == 4){
+    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
+    //                 mapData = data;
+    //             });
+    //         }
+    //         if(this.value == 3){
+    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
+    //                 mapData = data;
+    //             });
+    //         }
+    //     }
+    // });
+
+
 
 </script>
 </body>

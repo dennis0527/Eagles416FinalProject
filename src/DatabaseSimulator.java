@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -36,7 +36,7 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         JSONParser parser = new JSONParser();
         try {
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_data_raw.json");
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_data_raw.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -58,7 +58,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try{
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/congressional_json.json");
+            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
@@ -76,7 +76,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try{
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_neighbors.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_neighbors.txt"));
             String line = reader.readLine();
 
             while(line != null){

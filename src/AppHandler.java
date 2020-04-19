@@ -24,6 +24,7 @@ public class AppHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public String getState() {
         String result = DatabaseSimulator.getStateJson();
+        System.out.println("Retrieving states");
         return result;
     }
 
