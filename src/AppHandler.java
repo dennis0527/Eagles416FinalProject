@@ -55,4 +55,11 @@ public class AppHandler {
     public String getAnomalousErrors(@PathParam("stateName") String state) {
         return DatabaseSimulator.getAnomalousErrors(state);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("NationalParks")
+    public String getNationalParks(){
+        return DatabaseSimulator.getNationalParks();
+    }
 }

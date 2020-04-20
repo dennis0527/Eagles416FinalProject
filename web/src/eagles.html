@@ -292,8 +292,11 @@
 </div>
 <!--TEST FOR REST-->
 <div>
-    <button id = "testRestButton" type="button" class="btn btn-info pull-center">Test</button>
-
+    <!--    <button id = "testRestButton" type="button" class="btn btn-info pull-center">Test</button>-->
+        <div class="custom-control custom-checkbox" style="padding-left: 5px; padding-top: 15px;">
+            <input type="checkbox"  class="custom-control-input" id="NationalParksCheck" onclick="addNationalParkLayer()">
+            <label class="custom-control-label" for="NationalParksCheck">Show National Parks</label>
+        </div>
 </div>
 <!--TEST FOR REST-->
 
@@ -312,6 +315,9 @@
     var mapData;
     var mapLayers;
     var mapJson;
+    var nationalParksData;
+    var nationalParksLayer;
+    var nationalParksJson;
     $('#loader').addClass("loader").removeClass("hide-loader");
     $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
         mapData = data;
@@ -585,6 +591,17 @@
             opacity: 0.7,
             color: 'white',
             dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
+    function styleNationalParks(feature) {
+        return {
+            fillColor: '#68E8C2',
+            weight: 2,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '3',
             fillOpacity: 0.7
         };
     }
@@ -969,15 +986,15 @@
                 });
             }
         }
-        else {
-            e = document.getElementById("election_select");
-            e.style.display = "none";
-            mapLayers.removeLayer(mapJson);
-            mapJson = L.geoJson(mapData, {
-                style: style,
-                onEachFeature: onEachFeature
-            }).addTo(mapLayers);
-        }
+        // else {
+        //     e = document.getElementById("election_select");
+        //     e.style.display = "none";
+        //     mapLayers.removeLayer(mapJson);
+        //     mapJson = L.geoJson(mapData, {
+        //         style: style,
+        //         onEachFeature: onEachFeature
+        //     }).addTo(mapLayers);
+        // }
     }
 
     /* Start out the map in state form */
@@ -1111,7 +1128,6 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     $.get(neighbors_url, function(data, status){
 
@@ -1120,7 +1136,6 @@
                             '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: US Census</i>' //dummy data to remove
                             : 'Hover over a state');
-                        $('#loader').addClass("hide-loader").removeClass("loader");
 
 
                     });
@@ -1136,7 +1151,6 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     $.get(neighbors_url, function(data, status){
 
@@ -1148,7 +1162,6 @@
                             + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: US Census</i>' //dummy data to remove
                             : 'Hover over a precinct');
-                        $('#loader').addClass("hide-loader").removeClass("loader");
 
                     });
                 }
@@ -1164,7 +1177,6 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     $.get(neighbors_url, function(data, status){
 
@@ -1175,7 +1187,6 @@
                             + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                             + '<h5><i>Source: Maryland State Board of Elections</i>'
                             : 'Hover over a precinct');
-                        $('#loader').addClass("hide-loader").removeClass("loader");
 
                     });
                 }
@@ -1306,6 +1317,28 @@
 
     function markerClick(e) {
         map.flyTo([39.657, -77.575], 10);
+    }
+
+    function addNationalParkLayer(){
+
+        if(document.getElementById("NationalParksCheck").checked){
+            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/NationalParks/", function(data, status){
+                nationalParksData = data;
+                // ADD THE NATIONAL PARKS LAYER
+                nationalParksLayer = L.layerGroup().addTo(map);
+                nationalParksJson = L.geoJson(nationalParksData).addTo(nationalParksLayer);
+                nationalParksJson = L.geoJson(nationalParksData, {
+                    style: styleNationalParks,
+                    onEachFeature: onEachFeature
+                }).addTo(mapLayers);
+            });
+        }
+        else{
+            map.removeLayer(nationalParksJson);
+            map.removeLayer(nationalParksLayer);
+
+        }
+
     }
 
     // $("#state_change").change(function(){
