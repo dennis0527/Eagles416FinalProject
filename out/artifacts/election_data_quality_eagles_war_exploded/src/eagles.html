@@ -312,8 +312,8 @@
     var mapData;
     var mapLayers;
     var mapJson;
+    $('#loader').addClass("loader").removeClass("hide-loader");
     $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
-        $('#loader').addClass("loader").removeClass("hide-loader");
         mapData = data;
         /* Create layer groups for state, county, and congress*/
         mapLayers = L.layerGroup().addTo(map);
@@ -458,10 +458,33 @@
         };
     }
 
+    function style5(feature) {
+        return {
+            fillColor: marylandPopColor(feature.properties.TOTALPOP),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
     /* Precinct only for now, styles based on % white pop*/
     function styleDemographics(feature){
         return {
             fillColor: getDemographicsColor((feature.properties.ADJ_WHITE/feature.properties.ADJ_POP)*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
+    /* Precinct only for now, styles based on % white pop*/
+    function styleDemographicsPrecinctFlorida(feature){
+        return {
+            fillColor: getDemographicsColor((feature.properties.WHITE/feature.properties.TOTALPOP)*100),
             weight: 1,
             opacity: 0.7,
             color: 'white',
@@ -504,7 +527,7 @@
         };
     }
 
-    function styleHouse16(feature) {
+    function marylandHouse16(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USH16D)/(feature.properties.USH16D + feature.properties.USH16R))*100),
             weight: 1,
@@ -527,6 +550,37 @@
     function marylandHouse18(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USH18D)/(feature.properties.USH18D + feature.properties.USH18R))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
+    function floridaPres16(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.G16PREDCli)/(feature.properties.G16PRERTru + feature.properties.G16PREDCli))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function floridaHouse18(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD18)/(feature.properties.USHR18 + feature.properties.USHD18))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function floridaHouse16(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD16)/(feature.properties.USHD16 + feature.properties.USHR16))*100),
             weight: 1,
             opacity: 0.7,
             color: 'white',
@@ -648,6 +702,9 @@
 
 
     function alterStyleData() {
+        if(document.getElementById("state_change").value == 0) {
+            return;
+        }
         var e = document.getElementById("data_type_select");
         var chosenData = e.options[e.selectedIndex].text;
 
@@ -714,40 +771,53 @@
             console.log("Maryland Toggle: " + marylandToggle);
             console.log("States toggle: " + statesToggle);
             if(marylandToggle){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    $('#loader').addClass("loader");
-                    $('#loader').removeClass("hide-loader");
-
+                console.log("State change value: " + document.getElementById("state_change").value);
+                if (document.getElementById("state_change").value == 1) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/FloridaElection";
+                    style1 = floridaHouse16;
+                    style2 = floridaHouse18;
+                    style3= floridaPres16;
+                }
+                else if (document.getElementById("state_change").value == 2) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
+                    style1 = marylandHouse16;
+                    style2 = marylandHouse18;
+                    style3 = marylandPres16;
+                } else {
+                    return;
+                }
+                $('#loader').addClass("loader").removeClass("hide-loader");
+                $.get(url, function(data, status){
                     mapData = data;
                     if (chosenElection == "2016 Congressional Election") {
                         mapLayers.removeLayer(mapJson);
                         mapJson = L.geoJson(mapData, {
-                            style: styleHouse16,
+                            style: style1,
                             onEachFeature: onEachFeature
                         }).addTo(mapLayers);
                     }
                     else if (chosenElection == "2018 Congressional Election") {
                         mapLayers.removeLayer(mapJson);
                         mapJson = L.geoJson(mapData, {
-                            style: marylandHouse18,
+                            style: style2,
                             onEachFeature: onEachFeature
                         }).addTo(mapLayers);
                     }
                     else if (chosenElection == "2016 Presidential Election") {
                         mapLayers.removeLayer(mapJson);
                         mapJson = L.geoJson(mapData, {
-                            style: marylandPres16,
+                            style: style3,
                             onEachFeature: onEachFeature
                         }).addTo(mapLayers);
                     }
-                    $('#loader').addClass("hide-loader");
-                    $('#loader').removeClass("loader");
+                    $('#loader').addClass("hide-loader").removeClass("loader");
 
                 });
             }
             else if(statesToggle){
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     mapData = data;
                     if (chosenElection == "2016 Congressional Election") {
@@ -782,8 +852,9 @@
             e.style.display = "none";
 
             if(statesToggle){
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
@@ -796,8 +867,9 @@
                 });
             }
             else if(congressToggle){
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     mapData = data;
                     $('#loader').addClass("hide-loader").removeClass("loader");
@@ -805,13 +877,27 @@
                 });
             }
             else if(marylandToggle){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
+                console.log("State change value: " + document.getElementById("state_change").value);
+                if (document.getElementById("state_change").value == 1) {
+                    var url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
+                    console.log("1" + url);
+                    styleFunction = styleDemographicsPrecinctFlorida;
+                }
+                else if (document.getElementById("state_change").value == 2) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
+                    styleFunction = styleDemographics;
+                } else {
+                    return;
+                }
+                console.log("2" + url);
+                $('#loader').addClass("loader").removeClass("hide-loader");
 
+                $.get(url, function(data, status){
+                    console.log("3" + url);
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
-                        style: styleDemographics,
+                        style: styleFunction,
                         onEachFeature: onEachFeature
                     }).addTo(mapLayers);
                     $('#loader').addClass("hide-loader").removeClass("loader");
@@ -826,8 +912,9 @@
             e.style.display = "none";
 
             if(statesToggle){
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
@@ -841,8 +928,9 @@
 
             }
             else if(congressToggle){
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
 
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
@@ -856,13 +944,24 @@
 
             }
             else if(marylandToggle){
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-                    $('#loader').addClass("loader").removeClass("hide-loader");
+                if (document.getElementById("state_change").value == 1) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
+                    popStyle = style5;
+                }
+                else if (document.getElementById("state_change").value == 2) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
+                    popStyle = style4;
+                } else {
+                    return;
+                }
+                $('#loader').addClass("loader").removeClass("hide-loader");
+
+                $.get(url, function(data, status){
 
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
-                        style: style4,
+                        style: popStyle,
                         onEachFeature: onEachFeature
                     }).addTo(mapLayers);
                     $('#loader').addClass("hide-loader").removeClass("loader");
@@ -1012,8 +1111,9 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
                     $.get(neighbors_url, function(data, status){
-                        $('#loader').addClass("loader").removeClass("hide-loader");
 
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
@@ -1036,8 +1136,9 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
                     $.get(neighbors_url, function(data, status){
-                        $('#loader').addClass("loader").removeClass("hide-loader");
 
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
@@ -1063,8 +1164,9 @@
                 var ref = this;
                 if(props){
                     var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+                    $('#loader').addClass("loader").removeClass("hide-loader");
+
                     $.get(neighbors_url, function(data, status){
-                        $('#loader').addClass("loader").removeClass("hide-loader");
 
                         neighbors = data.neighbors;
                         ref._div.innerHTML = '<h4>Election</h4>' + (props ?

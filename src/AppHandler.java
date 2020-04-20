@@ -48,4 +48,11 @@ public class AppHandler {
     public String getNeighbors(@PathParam("stateName") String state, @PathParam("precinctName") String precinct){
         return DatabaseSimulator.getNeighbors(state, precinct.replaceAll("%20", " "));
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("AnomalousError/{stateName}")
+    public String getAnomalousErrors(@PathParam("stateName") String state) {
+        return DatabaseSimulator.getAnomalousErrors(state);
+    }
 }

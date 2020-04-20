@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/us-states.json");
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -27,62 +27,69 @@ public class DatabaseSimulator {
             result = jsonObject.toString();
 
             return result;
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("\n\n\n\n\n" + e.toString());
             return e.toString();
         }
     }
 
     public static String getPrecinctJson(String stateName) {
-        JSONParser parser = new JSONParser();
+        String fileName = "";
+        if (stateName.equals("Maryland")) {
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_data_raw.json";
+        } else if (stateName.equals("Florida")) {
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_demographicscopy.json";
+        } else if (stateName.equals("FloridaElection")) {
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_precinctcopy.json";
+        }
+
+
         try {
-            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_data_raw.json");
+            JSONParser parser = new JSONParser();
+            System.out.println(fileName);
+            Reader reader = new FileReader(fileName);
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
-            
-
             result = jsonObject.toString();
-
+            System.out.println(result);
             return result;
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("\n\n\n\n\n" + e.toString());
             return e.toString();
         }
 
     }
 
-    public static String getCongressionalDistricts(String stateName){
+    public static String getCongressionalDistricts(String stateName) {
         JSONParser parser = new JSONParser();
 
-        try{
-            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/congressional_json.json");
+        try {
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("\n\n\n\n\n" + e.toString());
             return e.toString();
         }
 
     }
 
-    public static String getNeighbors(String stateName, String precinctName){
+    public static String getNeighbors(String stateName, String precinctName) {
 
         JSONParser parser = new JSONParser();
 
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_neighbors.txt"));
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_neighbors.txt"));
             String line = reader.readLine();
 
-            while(line != null){
+            while (line != null) {
 
                 String precinct = line.substring(0, line.indexOf(":"));
-                if(precinct.equalsIgnoreCase(precinctName)){
+                if (precinct.equalsIgnoreCase(precinctName)) {
 
                     return line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
 
@@ -95,10 +102,29 @@ public class DatabaseSimulator {
 
             return null;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("\n\n\n\n" + e.toString());
             return e.toString();
         }
     }
 
+
+    public static String getAnomalousErrors(String stateName) {
+        JSONParser parser = new JSONParser();
+        if (stateName.equals("Maryland")) {
+            try {
+                Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_anomalous.json");
+                JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+                return jsonObject.toString();
+
+
+            } catch (Exception e) {
+                System.out.println("\n\n\n\n\n" + e.toString());
+                return e.toString();
+            }
+        } else {
+            return "";
+        }
+    }
 }
