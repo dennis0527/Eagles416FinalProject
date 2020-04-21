@@ -498,6 +498,17 @@
             fillOpacity: 0.7
         };
     }
+    /* Precinct only for now, styles based on % white pop*/
+    function styleDemographicsPrecinctNewYork(feature){
+        return {
+            fillColor: getDemographicsColor((feature.properties.white/feature.properties.pop2000)*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
 
     /*Style for state senate election, probably remove?*/
     function styleElectionSenate16(feature) {
@@ -585,6 +596,37 @@
         };
     }
     function floridaHouse16(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD16)/(feature.properties.USHD16 + feature.properties.USHR16))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
+    function newYorkPres16(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.P_PCTClint)*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function newYorkHouse18(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD18)/(feature.properties.USHR18 + feature.properties.USHD18))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function newYorkHouse16(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USHD16)/(feature.properties.USHD16 + feature.properties.USHR16))*100),
             weight: 1,
@@ -800,7 +842,14 @@
                     style1 = marylandHouse16;
                     style2 = marylandHouse18;
                     style3 = marylandPres16;
-                } else {
+                }
+                else if (document.getElementById("state_change").value == 3) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York Election";
+                    style1 = newYorkHouse16;
+                    style2 = newYorkHouse18;
+                    style3 = newYorkPres16;
+                }
+                else {
                     return;
                 }
                 $('#loader').addClass("loader").removeClass("hide-loader");
@@ -903,7 +952,12 @@
                 else if (document.getElementById("state_change").value == 2) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
                     styleFunction = styleDemographics;
-                } else {
+                }
+                else if (document.getElementById("state_change").value == 3) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York"
+                    styleFunction = styleDemographicsPrecinctNewYork;
+                }
+                else {
                     return;
                 }
                 console.log("2" + url);

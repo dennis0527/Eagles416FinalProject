@@ -498,6 +498,17 @@
             fillOpacity: 0.7
         };
     }
+    /* Precinct only for now, styles based on % white pop*/
+    function styleDemographicsPrecinctNewYork(feature){
+        return {
+            fillColor: getDemographicsColor((feature.properties.white/feature.properties.pop2000)*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
 
     /*Style for state senate election, probably remove?*/
     function styleElectionSenate16(feature) {
@@ -585,6 +596,37 @@
         };
     }
     function floridaHouse16(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD16)/(feature.properties.USHD16 + feature.properties.USHR16))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+
+    function newYorkPres16(feature) {
+        return {
+            fillColor: getElectionColor((feature.properties.P_PCTClint)*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function newYorkHouse18(feature) {
+        return {
+            fillColor: getElectionColor(((feature.properties.USHD18)/(feature.properties.USHR18 + feature.properties.USHD18))*100),
+            weight: 1,
+            opacity: 0.7,
+            color: 'white',
+            dashArray: '1',
+            fillOpacity: 0.7
+        };
+    }
+    function newYorkHouse16(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USHD16)/(feature.properties.USHD16 + feature.properties.USHR16))*100),
             weight: 1,
@@ -800,7 +842,14 @@
                     style1 = marylandHouse16;
                     style2 = marylandHouse18;
                     style3 = marylandPres16;
-                } else {
+                }
+                else if (document.getElementById("state_change").value == 3) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York Election";
+                    style1 = newYorkHouse16;
+                    style2 = newYorkHouse18;
+                    style3 = newYorkPres16;
+                }
+                else {
                     return;
                 }
                 $('#loader').addClass("loader").removeClass("hide-loader");
@@ -903,7 +952,12 @@
                 else if (document.getElementById("state_change").value == 2) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
                     styleFunction = styleDemographics;
-                } else {
+                }
+                else if (document.getElementById("state_change").value == 3) {
+                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York"
+                    styleFunction = styleDemographicsPrecinctNewYork;
+                }
+                else {
                     return;
                 }
                 console.log("2" + url);
@@ -1063,42 +1117,38 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
-        if(statesToggle){
-            if(chosenData == "Population Data") {
+        if (statesToggle) {
+            if (chosenData == "Population Data") {
                 legend.addTo(map);
-                this._div.innerHTML = '<h4>US Population Data</h4>' +  (props ?
+                this._div.innerHTML = '<h4>US Population Data</h4>' + (props ?
                     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
                     + '<h5><i>Source: US Census</i>' //dummy data to remove
                     : 'Hover over a state');
-            }
-            else if (chosenData == "Election Data") {
+            } else if (chosenData == "Election Data") {
                 map.removeControl(legend);
                 if (chosenElection == "2016 Presidential Election") {
-                    this._div.innerHTML = '<h4>US 2016 Presidential Election Data</h4>' +  (props ?
+                    this._div.innerHTML = '<h4>US 2016 Presidential Election Data</h4>' + (props ?
                         '<b>' + props.name + '</b><br />' + props.election_pres[0] + '% Democrat' +
                         '<br />' + props.election_pres[1] + "% Republican"
                         + '<h5><i>Source: US Census</i>' //dummy data to remove
                         : 'Hover over a state');
-                }
-                else if (chosenElection == "2016 Congressional Election") {
-                    this._div.innerHTML = '<h4>US 2016 Congressional Election Data</h4>' +  (props ?
-                        '<b>' + props.name + '</b><br />'  + '<h5><b>Senate Data</b></h5>' +
+                } else if (chosenElection == "2016 Congressional Election") {
+                    this._div.innerHTML = '<h4>US 2016 Congressional Election Data</h4>' + (props ?
+                        '<b>' + props.name + '</b><br />' + '<h5><b>Senate Data</b></h5>' +
                         props.election_senate_16[0] + '% Democrat ' +
                         props.election_senate_16[1] + "% Republican"
                         + '<h5><i>Source: US Census</i>' //dummy data to remove
                         : 'Hover over a state');
-                }
-                else if (chosenElection == "2018 Congressional Election") {
-                    this._div.innerHTML = '<h4>US 2018 Congressional Election Data</h4>' +  (props ?
+                } else if (chosenElection == "2018 Congressional Election") {
+                    this._div.innerHTML = '<h4>US 2018 Congressional Election Data</h4>' + (props ?
                         '<b>' + props.name + '</b><br />' + '<h5><b>Senate Data</b></h5>' +
                         props.election_senate_18[0] + '% Democrat ' +
                         props.election_senate_18[1] + "% Republican"
                         + '<h5><i>Source: US Census</i>' //dummy data to remove
                         : 'Hover over a state');
                 }
-            }
-            else if (chosenData == "Demographic Data") {
-                this._div.innerHTML = '<h4>Demographics</h4>' +  (props ?
+            } else if (chosenData == "Demographic Data") {
+                this._div.innerHTML = '<h4>Demographics</h4>' + (props ?
                     '<b>' + props.name + '</b><br />' + 'percent white: ' + props.demo_data[0].toFixed(2) + '%' +
                     '</b><br />' + 'percent hispanic: ' + props.demo_data[1].toFixed(2) + '%' +
                     '</b><br />' + 'percent black: ' + props.demo_data[2].toFixed(2) + '%' +
@@ -1107,9 +1157,9 @@
                     : 'Hover over a state');
             }
         }
-        if(congressToggle){
+        if (congressToggle) {
             legend.addTo(map);
-            this._div.innerHTML = '<h4>Census Area</h4>' +  (props ?
+            this._div.innerHTML = '<h4>Census Area</h4>' + (props ?
                 '<b>' + props.NAME + '</b><br />' + props.CENSUSAREA + ' people / mi<sup>2</sup>'
                 + '<h5><i>Source: US Census</i>' //dummy data to remove
                 : 'Hover over a congressional district');
@@ -1120,81 +1170,96 @@
         /* There is also properties that have 18 in them, such as ADJ_18__PO, I'm assuming this means population over 18?
             But I'm not totally sure. Possibly change data to the 18 versions if we figure out what that means. */
         /* TODO: Add in the other races */
-        if(marylandToggle){
+        if (marylandToggle) {
             var neighbors;
 
-            if(chosenData == "Population Data") {
-                legend.addTo(map);
-                var ref = this;
-                if(props){
-                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
-                    $.get(neighbors_url, function(data, status){
-
-                        neighbors = data.neighbors;
-                        ref._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
-                            '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                            + '<h5><i>Source: US Census</i>' //dummy data to remove
-                            : 'Hover over a state');
-
-
-                    });
-
+            if (document.getElementById("state_change").value == 1) {
+                if (chosenData == "Population Data") {
+                    legend.addTo(map);
+                    var ref = this;
+                    ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
+                        '<b>' + props.AUTOID + '</b><br />' + props.TOTALPOP + ' people '
+                        + '<h5><i>Source: US Census</i>' //dummy data to remove
+                        : 'Hover over a precinct');
                 }
-                // this._div.innerHTML = '<h4>Population Data</h4>' +  (props ?
-                //     '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>'
-                //     + '<h5><i>Source: US Census</i>' //dummy data to remove
-                //     : 'Hover over a state');
-            }
-            if(chosenData == "Demographic Data") {
-                map.removeControl(legend);
-                var ref = this;
-                if(props){
-                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
-                    $.get(neighbors_url, function(data, status){
-
-                        neighbors = data.neighbors;
-                        ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                            '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                            '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                            '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
-                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                            + '<h5><i>Source: US Census</i>' //dummy data to remove
-                            : 'Hover over a precinct');
-
-                    });
+                if (chosenData == "Demographic Data") {
+                    map.removeControl(legend);
+                    var ref = this;
+                    ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
+                        '<b>' + props.AUTOID + '</b><br />' + 'percent white: ' + props.PCT_WHITE.toFixed(2) + '%' +
+                        '</b><br />' + 'percent black: ' + props.PCT_BLACK.toFixed(2) + '%' +
+                        '</b><br />' + 'percent asian: ' + props.PCT_ASIAN.toFixed(2) + '%'
+                        + '<h5><i>Source: US Census</i>' //dummy data to remove
+                        : 'Hover over a precinct');
                 }
-                // this._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                //     '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                //     '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                //     '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
-                //     + '<h5><i>Source: US Census</i>' //dummy data to remove
-                //     : 'Hover over a precinct');
-            }
-            if(chosenData == "Election Data") {
-                map.removeControl(legend);
-                var ref = this;
-                if(props){
-                    var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
-                    $.get(neighbors_url, function(data, status){
-
-                        neighbors = data.neighbors;
-                        ref._div.innerHTML = '<h4>Election</h4>' + (props ?
-                            '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R)/(props.USH16D + props.USH16R))*100).toFixed(2) + '%'
-                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                            + '<h5><i>Source: Maryland State Board of Elections</i>'
-                            : 'Hover over a precinct');
-
-                    });
+                if (chosenData == "Election Data") {
+                    map.removeControl(legend);
+                    var ref = this;
+                    ref._div.innerHTML = '<h4>Election</h4>' + (props ?
+                        '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
+                        '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
+                        + '<h5><i>Source: Maryland State Board of Elections</i>'
+                        : 'Hover over a precinct');
                 }
-                // this._div.innerHTML = '<h4>Election</h4>' + (props ?
-                //     '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D)/(props.USH16D + props.USH16R))*100).toFixed(2) +
-                //     '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R)/(props.USH16D + props.USH16R))*100).toFixed(2) + '%'
-                //     + '<h5><i>Source: Maryland State Board of Elections</i>'
-                //     : 'Hover over a precinct');
+            } else if (document.getElementById("state_change").value == 2) {
+                if (chosenData == "Population Data") {
+                    legend.addTo(map);
+                    var ref = this;
+                    if (props) {
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+
+                        $.get(neighbors_url, function (data, status) {
+
+                            neighbors = data.neighbors;
+                            ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
+                                '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                + '<h5><i>Source: US Census</i>' //dummy data to remove
+                                : 'Hover over a state');
+
+
+                        });
+
+                    }
+                }
+                if (chosenData == "Demographic Data") {
+                    map.removeControl(legend);
+                    var ref = this;
+                    if (props) {
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+
+                        $.get(neighbors_url, function (data, status) {
+
+                            neighbors = data.neighbors;
+                            ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
+                                '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                                '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
+                                '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
+                                + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                + '<h5><i>Source: US Census</i>' //dummy data to remove
+                                : 'Hover over a precinct');
+
+                        });
+                    }
+                }
+                if (chosenData == "Election Data") {
+                    map.removeControl(legend);
+                    var ref = this;
+                    if (props) {
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
+
+                        $.get(neighbors_url, function (data, status) {
+
+                            neighbors = data.neighbors;
+                            ref._div.innerHTML = '<h4>Election</h4>' + (props ?
+                                '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D) / (props.USH16D + props.USH16R)) * 100).toFixed(2) +
+                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R) / (props.USH16D + props.USH16R)) * 100).toFixed(2) + '%'
+                                + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                + '<h5><i>Source: Maryland State Board of Elections</i>'
+                                : 'Hover over a precinct');
+
+                        });
+                    }
+                }
             }
         }
     };

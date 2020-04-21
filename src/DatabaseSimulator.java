@@ -41,6 +41,10 @@ public class DatabaseSimulator {
             fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_demographics.json";
         } else if (stateName.equals("FloridaElection")) {
             fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_precinct.json";
+        } else if (stateName.equals("New York")) {
+            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_demographics.json";
+        } else if(stateName.equals("New York Election")) {
+            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_precinct_lines.json";
         }
 
 
