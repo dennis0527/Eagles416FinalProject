@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/us-states.json");
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -36,15 +36,15 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         String fileName = "";
         if (stateName.equals("Maryland")) {
-            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_data_raw.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_data_raw.json";
         } else if (stateName.equals("Florida")) {
-            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_demographics.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_demographicscopy.json";
         } else if (stateName.equals("FloridaElection")) {
-            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_precinct.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_precinctcopy.json";
         } else if (stateName.equals("New York")) {
-            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_demographics.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_demographics.json";
         } else if(stateName.equals("New York Election")) {
-            fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_precinct_lines.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_precinct_lines.json";
         }
 
 
@@ -69,7 +69,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/congressional_json.json");
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
@@ -87,7 +87,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_neighbors.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_neighbors.txt"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -117,7 +117,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
         if (stateName.equals("Maryland")) {
             try {
-                Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_anomalous.json");
+                Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_anomalous.json");
                 JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
                 return jsonObject.toString();
@@ -137,7 +137,7 @@ public class DatabaseSimulator {
     JSONParser parser = new JSONParser();
 
     try {
-        BufferedReader reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_national_park.json"));
+        BufferedReader reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_national_park.json"));
         JSONObject object = (JSONObject) parser.parse(reader);
         return object.toString();
 
