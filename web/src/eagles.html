@@ -68,21 +68,10 @@
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px;">
-                        <h5 style="margin-left: 15px;">Precinct:</h5>
-                        <div class="col-lg-6">
-                            <div class="dropdown">
-                                <select id="correction-precinct" class="form-control">
-                                    <option selected disabled value="0">Choose precinct</option>
-                                    <option value="1" >Washington Precinct 07-001</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 10px;">
                         <h5 style="margin-left: 15px;">Election:</h5>
                         <div class="col-lg-6">
                             <div class="dropdown">
-                                <select id="correction-election" class="form-control">
+                                <select id="correction-election" onchange = "changeCorrection()" class="form-control">
                                     <option selected disabled value="0">Choose election</option>
                                     <option value="1" >2016 Presidential Election</option>
                                     <option value="2">2016 Congressional Election</option>
@@ -96,14 +85,18 @@
                         <div class="col-lg-6">
                             <div class="dropdown">
                                 <select id="correction-list" onchange = "changeCorrection()" class="form-control">
-                                    <option selected disabled value="0">Choose correction</option>
-                                    <option value="1" >Fix self-intersecting precincts</option>
-                                    <option value="2">Fix open borders</option>
-                                    <option value="3" >Fix enclosed precincts</option>
-                                    <option value="4" >Fix gaps in precincts</option>
+                                    <option selected disabled value="0">Choose correction type</option>
+                                    <option value="1" >Show self-intersecting precincts</option>
+                                    <option value="2">Show open borders</option>
+                                    <option value="3" >Show enclosed precincts</option>
+                                    <option value="4" >Show gaps in precincts</option>
+                                    <option value="5" >Show anomalous errors</option>
                                 </select>
                             </div>
+                            <p></p>
+                            <p id="ErrorSelected"><b>Error Selected: </b>None</p>
                         </div>
+
                     </div>
                     <br>
                     <button type="button" class="btn btn-info pull-left" onclick= correctionSubmitted()>Submit</button>
@@ -302,7 +295,7 @@
 
 
 <!--<script type="text/javascript" src="us-states.json"></script>-->
-<script type="text/javascript" src="counties.json"></script>
+<!--<script type="text/javascript" src="counties.json"></script>-->
 <!--<script type="text/javascript" src="congressional.json"></script>-->
 <!--<script type="text/javascript" src="MD_data.json"></script>-->
 
@@ -707,6 +700,11 @@
             document.getElementById('AddPrecinctNameTwo').innerHTML = (document.getElementById('AddPrecinctNameOne').innerHTML).replace("First", "Second");
             document.getElementById('AddPrecinctNameOne').innerHTML = "<b>First Precinct Selected: </b>" + layer.feature.properties.NAME;
         }
+    }
+
+    function getErrorName(e){
+        var layer = e.target;
+        document.getElementById('ErrorSelected').innerHTML = "<b>Error Selected: </b>" + layer.feature.properties.errorIdentifier;
     }
 
     function submitGhostPrecinct() {
@@ -1375,32 +1373,74 @@
     var markers = new L.FeatureGroup();
 
     function changeCorrection(){
-        var e = document.getElementById("correction-list");
-        var chosenCorrection = e.options[e.selectedIndex].text;
-        console.log(chosenCorrection);
+        let e = document.getElementById("correction-list");
+        let chosenCorrection = e.options[e.selectedIndex].text;
+        e = document.getElementById("correction-election");
+        let chosenElection = e.options[e.selectedIndex].text;
 
-        if(chosenCorrection == "Fix enclosed precincts") {
-            var markerLocation = new L.LatLng(39.657, -77.575),
-                marker = new L.Marker(markerLocation).on('click', markerClick).addTo(markers);
-            marker.bindTooltip("Enclosed precincts",
-                {
-                    permanent: true,
-                    direction: 'right'
-                });
+        let election = "";
 
-            marker.addTo(markers);
-            markers.addTo(map);
-            // map.addLayer(marker).on('click', markerClick);
-
+        if(chosenCorrection == "Show anomalous errors") {
+            if(chosenElection == "2016 Presidential Election") {
+                election = "_pres_16";
+            }
+            else if(chosenElection == "2016 Congressional Election") {
+                election = "_congress_16";
+            }
+            else if(chosenElection == "2018 Congressional Election") {
+                election = "_congress_18";
+            }
+            else{
+                return;
+            }
+            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Maryland", function(data, status) {
+                markers.clearLayers();
+                createErrorMarkers(data, election);
+            });
         }
-        if(chosenCorrection != "Fix enclosed precincts"){
-            console.log("else");
+        if(chosenCorrection != "Show anomalous errors"){
             map.removeLayer(markers);
         }
     }
 
+    function createErrorMarkers(data, election){
+        markers.clearLayers();
+        console.log("Create error markers");
+        let temp;
+        let markerLocation;
+        let marker;
+        for(i in data.anomalousPrecincts){
+            if((data.anomalousPrecincts[i].errorIdentifier).includes(election)){
+                console.log(data.anomalousPrecincts[i].errorIdentifier);
+                console.log(election);
+                try {
+                    temp = L.geoJson({
+                        "type": "Polygon",
+                        "coordinates": data.anomalousPrecincts[i].coordinates.coordinates
+                    });
+
+                    markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
+                    marker = new L.Marker(markerLocation).on('click', markerClick);
+                    marker.bindTooltip(data.anomalousPrecincts[i].errorIdentifier,
+                        {
+                            permanent: true,
+                            direction: 'right'
+                        });
+
+                    marker.addTo(markers);
+                    map.addLayer(marker).on('click', markerClick);
+                    markers.addTo(map);
+                }
+                catch(e){
+                    console.log(i);
+                    continue;
+                }
+            }
+        }
+    }
+
     function markerClick(e) {
-        map.flyTo([39.657, -77.575], 10);
+        map.flyTo(e.latlng, 10);
     }
 
     function addNationalParkLayer(){
