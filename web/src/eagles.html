@@ -651,7 +651,7 @@
             weight: 1,
             color: '#fff',
             dashArray: '',
-            fillOpacity: 0.5
+            fillOpacity: 0.5,
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -1056,6 +1056,7 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
+        this._div.style.width="80%";
         if (statesToggle) {
             if (chosenData == "Population Data") {
                 legend.addTo(map);

@@ -8,10 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="-Added Maryland JQUERY to pop up when Maryland">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_neighbors.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/FL_neighbors.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/eagles.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/eagles.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -274,7 +270,7 @@
       <workItem from="1587752457424" duration="1506000" />
       <workItem from="1587774454557" duration="1284000" />
       <workItem from="1587776046885" duration="3136000" />
-      <workItem from="1587854168898" duration="2624000" />
+      <workItem from="1587854168898" duration="3492000" />
     </task>
     <task id="LOCAL-00001" summary="First commit with test GET">
       <created>1586826033639</created>
