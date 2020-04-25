@@ -1134,24 +1134,34 @@
                 if (chosenData == "Election Data") {
                     map.removeControl(legend);
                     var ref = this;
-                    if (chosenElection == "2016 Presidential Election") {
-                        ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.G16PREDCli) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.G16PRERTru) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Maryland State Board of Elections</i>'
-                            : 'Hover over a precinct');
-                    }else if (chosenElection == "2016 Congressional Election") {
-                        ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Florida State Board of Elections</i>'
-                            : 'Hover over a precinct');
-                    }else if (chosenElection == "2018 Congressional Election") {
-                        ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Florida State Board of Elections</i>'
-                            : 'Hover over a precinct');
+                    if (props) {
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Florida/" + props.CANON_NAME + "/neighbors";
+                        console.log(neighbors_url);
+                        $.get(neighbors_url, function(data,status) {
+                            neighbors = data.neighbors;
+                            if (chosenElection == "2016 Presidential Election") {
+                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.G16PREDCli) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.G16PRERTru) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            } else if (chosenElection == "2016 Congressional Election") {
+                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            } else if (chosenElection == "2018 Congressional Election") {
+                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            }
+                        });
                     }
                 }
             }
