@@ -58,7 +58,7 @@
                         <h5 style="margin-left: 15px;">State:</h5>
                         <div class="col-lg-6">
                             <div class="dropdown">
-                                <select id="correction-state" class="form-control">
+                                <select id="correction-state" onchange = "changeCorrection()" class="form-control">
                                     <option selected disabled value="0">Choose state</option>
                                     <option value="1" >Florida</option>
                                     <option value="2">New York</option>
@@ -651,7 +651,7 @@
             weight: 1,
             color: '#fff',
             dashArray: '',
-            fillOpacity: 0.5
+            fillOpacity: 0.5,
         });
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -1056,6 +1056,7 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
+        this._div.style.width="80%";
         if (statesToggle) {
             if (chosenData == "Population Data") {
                 legend.addTo(map);
@@ -1134,24 +1135,34 @@
                 if (chosenData == "Election Data") {
                     map.removeControl(legend);
                     var ref = this;
-                    if (chosenElection == "2016 Presidential Election") {
-                        ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.G16PREDCli) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.G16PRERTru) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Maryland State Board of Elections</i>'
-                            : 'Hover over a precinct');
-                    }else if (chosenElection == "2016 Congressional Election") {
-                        ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Florida State Board of Elections</i>'
-                            : 'Hover over a precinct');
-                    }else if (chosenElection == "2018 Congressional Election") {
-                        ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                            '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
-                            '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
-                            + '<h5><i>Source: Florida State Board of Elections</i>'
-                            : 'Hover over a precinct');
+                    if (props) {
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Florida/" + props.CANON_NAME + "/neighbors";
+                        console.log(neighbors_url);
+                        $.get(neighbors_url, function(data,status) {
+                            neighbors = data.neighbors;
+                            if (chosenElection == "2016 Presidential Election") {
+                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.G16PREDCli) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.G16PRERTru) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            } else if (chosenElection == "2016 Congressional Election") {
+                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            } else if (chosenElection == "2018 Congressional Election") {
+                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: Florida State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            }
+                        });
                     }
                 }
             }
@@ -1254,27 +1265,36 @@
                 if (chosenData == "Election Data") {
                     map.removeControl(legend);
                     var ref = this;
+                    let neighbors = "None.";
                     if (props) {
-                        if (chosenElection == "2016 Presidential Election") {
-                            ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                                '<b>' + props.P_Precinct + '</b><br />' + 'Democrat Percent: ' + (((props.P_Clinton) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) +
-                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.P_Trump) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) + '%'
-                                + '<h5><i>Source: New York State Board of Elections</i>'
-                                : 'Hover over a precinct');
-
-                        }else if (chosenElection == "2016 Congressional Election") {
-                            ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                                '<b>' + props.P_Precinct + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
-                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
-                                + '<h5><i>Source: New York State Board of Elections</i>'
-                                : 'Hover over a precinct');
-                        }else if (chosenElection == "2018 Congressional Election") {
-                            ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                                '<b>' + props.P_Precinct + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
-                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
-                                + '<h5><i>Source: New York State Board of Elections</i>'
-                                : 'Hover over a precinct');
-                        }
+                        var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/New York/" + props.CANON_NAME + "/neighbors";
+                        $.get(neighbors_url, function (data, status) {
+                            if (chosenElection == "2016 Presidential Election") {
+                                neighbors = data.neighbors;
+                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.P_Clinton) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.P_Trump) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: New York State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            }else if (chosenElection == "2016 Congressional Election") {
+                                neighbors = data.neighbors;
+                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: New York State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            }else if (chosenElection == "2018 Congressional Election") {
+                                neighbors = data.neighbors;
+                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
+                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
+                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
+                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                    + '<h5><i>Source: New York State Board of Elections</i>'
+                                    : 'Hover over a precinct');
+                            }
+                        });
                     }
                 }
             }
@@ -1377,8 +1397,24 @@
         let chosenCorrection = e.options[e.selectedIndex].text;
         e = document.getElementById("correction-election");
         let chosenElection = e.options[e.selectedIndex].text;
+        e = document.getElementById("correction-state");
+        let chosenState = e.options[e.selectedIndex].text;
 
         let election = "";
+        let url = "";
+
+        if (chosenState == "Florida") {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Florida";
+        }
+        else if (chosenState == "Maryland") {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Maryland";
+        }
+        else if (chosenState == "New York") {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/New York";
+        }
+        else {
+            return;
+        }
 
         if(chosenCorrection == "Show anomalous errors") {
             if(chosenElection == "2016 Presidential Election") {
@@ -1393,7 +1429,7 @@
             else{
                 return;
             }
-            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Maryland", function(data, status) {
+            $.get(url, function(data, status) {
                 markers.clearLayers();
                 createErrorMarkers(data, election);
             });
@@ -1405,14 +1441,11 @@
 
     function createErrorMarkers(data, election){
         markers.clearLayers();
-        console.log("Create error markers");
         let temp;
         let markerLocation;
         let marker;
         for(i in data.anomalousPrecincts){
             if((data.anomalousPrecincts[i].errorIdentifier).includes(election)){
-                console.log(data.anomalousPrecincts[i].errorIdentifier);
-                console.log(election);
                 try {
                     temp = L.geoJson({
                         "type": "Polygon",
@@ -1421,7 +1454,10 @@
 
                     markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
                     marker = new L.Marker(markerLocation).on('click', markerClick);
-                    marker.bindTooltip(data.anomalousPrecincts[i].errorIdentifier,
+
+                    let label = data.anomalousPrecincts[i].errorIdentifier.replace(/_/g, " ");
+
+                    marker.bindTooltip(label,
                         {
                             permanent: true,
                             direction: 'right'
