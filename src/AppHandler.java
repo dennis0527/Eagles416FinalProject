@@ -1,3 +1,4 @@
+import com.eagles.ElectionDataQuality.PersistenceLayer.PersistenceLayer;
 import org.json.simple.parser.ParseException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,14 +13,6 @@ public class AppHandler {
     public AppHandler() {
     }
 
-    // The Java method will process HTTP GET requests
-//    @Consumes(MediaType.TEXT_PLAIN)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/{stateName}")
-//    public String getState(@PathParam("stateName") String stateName) throws IOException, ParseException {
-//        String test =DatabaseSimulator.test();
-//        return test;
-//    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getState() {
@@ -61,5 +54,13 @@ public class AppHandler {
     @Path("NationalParks")
     public String getNationalParks(){
         return DatabaseSimulator.getNationalParks();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("state")
+    public String getStateJson(){
+        PersistenceLayer l = new PersistenceLayer();
+        return l.getStateJsonString();
     }
 }
