@@ -243,7 +243,7 @@
             <select id="data" onchange="changeData();alterStyleData()" class="form-control">
                 <option selected disabled value="0">Choose view level:</option>
                 <option value="1" >State</option>
-<!--                <option value="2">County</option>-->
+                <!--                <option value="2">County</option>-->
                 <option value="3" >Congress</option>
                 <option value="4">Precinct</option>
             </select>
@@ -1167,12 +1167,14 @@
                 }
             }
             else if (document.getElementById("state_change").value == 2) {
+                if (props) {
+                    console.log("MARYLAND PRECINCT: " + props.NAME);
+                }
                 if (chosenData == "Population Data") {
                     legend.addTo(map);
                     var ref = this;
                     if (props) {
                         var neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
                         $.get(neighbors_url, function (data, status) {
 
                             neighbors = data.neighbors;

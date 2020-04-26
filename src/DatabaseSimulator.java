@@ -14,6 +14,16 @@ public class DatabaseSimulator {
             Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
+
+//            Set key = jsonObject.keySet();
+//
+//            JSONArray array = (JSONArray) jsonObject.get(key.iterator().next());
+//            for(int i = 0; i < 3; i++) {            //searches for state by alphabetical id and returns associated JSON
+//                JSONObject obj = (JSONObject)array.get(i);
+//                if (Integer.parseInt(obj.get("id").toString()) == stateIndex) {
+//                    result = obj.toString();
+//                }
+//            }
             result = jsonObject.toString();
 
             return result;
@@ -34,7 +44,7 @@ public class DatabaseSimulator {
         } else if (stateName.equals("New York")) {
             fileName = "/Users/sudippaul/CSE416/FinalProject/src/NY_demographics.json";
         } else if(stateName.equals("New York Election")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/NY_precinct_lines.json";
+            fileName = "/Users/sudippaul/CSE416/FinalProject/src/NY_precinct_2.json";
         }
 
 
@@ -79,13 +89,13 @@ public class DatabaseSimulator {
         try {
             BufferedReader reader = null;
             if (stateName.equals("Maryland")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_neighbors.txt"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_neighbors.txt"));
             }
             else if (stateName.equals("Florida")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/FL_neighbors.json"));
             }
             else if (stateName.equals("New York")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/NY_neighbors.json"));
             }
             String line = reader.readLine();
 
@@ -152,13 +162,13 @@ public class DatabaseSimulator {
         try {
             BufferedReader reader = null;
             if (stateName.equals("Maryland")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_enclosed.json"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_enclosed.json"));
             }
             else if (stateName.equals("Florida")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/FL_neighbors.json"));
             }
             else if (stateName.equals("New York")) {
-                reader = new BufferedReader(new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/NY_neighbors.json"));
             }
             String line = reader.readLine();
             String errorsString = "";
