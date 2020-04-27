@@ -1057,6 +1057,12 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
+        if (!props) {
+            this._div.style.display="none";
+        }
+        else {
+            this._div.style.display="block";
+        }
         this._div.style.width="80%";
         if (statesToggle) {
             if (chosenData == "Population Data") {
@@ -1475,7 +1481,7 @@
 
             try {
                 temp = L.geoJson({
-                    "type": "MultiPolygon",
+                    "type": data[i].coordinates.type,
                     "coordinates": data[i].coordinates.coordinates
                 });
 

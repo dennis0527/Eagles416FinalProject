@@ -11,7 +11,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/us-states.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             String result = "";
 
@@ -36,15 +36,15 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         String fileName = "";
         if (stateName.equals("Maryland")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/MD_data_raw.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_data_raw.json";
         } else if (stateName.equals("Florida")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/FL_demographics.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_demographics.json";
         } else if (stateName.equals("FloridaElection")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/FL_precinct.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_precinct.json";
         } else if (stateName.equals("New York")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/NY_demographics.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_demographics.json";
         } else if(stateName.equals("New York Election")) {
-            fileName = "/Users/sudippaul/CSE416/FinalProject/src/NY_precinct_2.json";
+            fileName = "/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_precinct_2.json";
         }
 
 
@@ -69,7 +69,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
 
         try {
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/congressional_json.json");
+            Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/congressional_json.json");
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
             return jsonObject.toString();
@@ -89,13 +89,13 @@ public class DatabaseSimulator {
         try {
             BufferedReader reader = null;
             if (stateName.equals("Maryland")) {
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_neighbors.txt"));
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_neighbors.txt"));
             }
             else if (stateName.equals("Florida")) {
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/FL_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_neighbors.json"));
             }
             else if (stateName.equals("New York")) {
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/NY_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_neighbors.json"));
             }
             String line = reader.readLine();
 
@@ -126,7 +126,7 @@ public class DatabaseSimulator {
         JSONParser parser = new JSONParser();
         if (stateName.equals("Maryland")) {
             try {
-                Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_anomalous.json");
+                Reader reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_anomalous.json");
                 JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
                 return jsonObject.toString();
@@ -146,7 +146,7 @@ public class DatabaseSimulator {
     JSONParser parser = new JSONParser();
 
     try {
-        BufferedReader reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/FL_national_park.json"));
+        BufferedReader reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_national_park.json"));
         JSONObject object = (JSONObject) parser.parse(reader);
         return object.toString();
 
@@ -164,23 +164,19 @@ public class DatabaseSimulator {
             System.out.println("get enclosed precinct errors");
             Reader reader = null;
             if (stateName.equals("Maryland")) {
-<<<<<<< HEAD
                 reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Maryland_enclosed.json");
             }
             else if (stateName.equals("Florida")) {
                 reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_enclosed.json");
             }
             else if (stateName.equals("New York")) {
-                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/New York_enclosed.json");
-=======
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/MD_enclosed.json"));
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_enclosed.json"));
             }
             else if (stateName.equals("Florida")) {
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/FL_neighbors.json"));
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/FL_neighbors.json"));
             }
             else if (stateName.equals("New York")) {
-                reader = new BufferedReader(new FileReader("/Users/sudippaul/CSE416/FinalProject/src/NY_neighbors.json"));
->>>>>>> 648f9f3ad44eb00dbdd1cfdc16de446a06ace9fa
+                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/NY_neighbors.json"));
             }
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 

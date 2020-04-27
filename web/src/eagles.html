@@ -1057,16 +1057,13 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
-<<<<<<< HEAD
         if (!props) {
             this._div.style.display="none";
         }
         else {
             this._div.style.display="block";
         }
-=======
         this._div.style.width="80%";
->>>>>>> 648f9f3ad44eb00dbdd1cfdc16de446a06ace9fa
         if (statesToggle) {
             if (chosenData == "Population Data") {
                 legend.addTo(map);
