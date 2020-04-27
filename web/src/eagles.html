@@ -91,6 +91,7 @@
                                     <option value="3" >Show enclosed precincts</option>
                                     <option value="4" >Show gaps in precincts</option>
                                     <option value="5" >Show anomalous errors</option>
+                                    <option value="6" >Show overlapping precincts</option>
                                 </select>
                             </div>
                             <p></p>
@@ -1056,6 +1057,12 @@
         var chosenData = e.options[e.selectedIndex].text;
         e = document.getElementById("election_select");
         var chosenElection = e.options[e.selectedIndex].text;
+        if (!props) {
+            this._div.style.display="none";
+        }
+        else {
+            this._div.style.display="block";
+        }
         this._div.style.width="80%";
         if (statesToggle) {
             if (chosenData == "Population Data") {
@@ -1182,10 +1189,7 @@
                                 '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
                                 + '<h5><i>Source: US Census</i>' //dummy data to remove
                                 : 'Hover over a state');
-
-
                         });
-
                     }
                 }
                 if (chosenData == "Demographic Data") {
@@ -1404,75 +1408,99 @@
 
         let election = "";
         let url = "";
+        let state = "";
 
-        if (chosenState == "Florida") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Florida";
+        if(chosenElection == "2016 Presidential Election") {
+            election = "_pres_16";
         }
-        else if (chosenState == "Maryland") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/Maryland";
+        else if(chosenElection == "2016 Congressional Election") {
+            election = "_congress_16";
         }
-        else if (chosenState == "New York") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/New York";
-        }
-        else {
-            return;
+        else if(chosenElection == "2018 Congressional Election") {
+            election = "_congress_18";
         }
 
         if(chosenCorrection == "Show anomalous errors") {
-            if(chosenElection == "2016 Presidential Election") {
-                election = "_pres_16";
-            }
-            else if(chosenElection == "2016 Congressional Election") {
-                election = "_congress_16";
-            }
-            else if(chosenElection == "2018 Congressional Election") {
-                election = "_congress_18";
-            }
-            else{
-                return;
-            }
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/" + chosenState;
+
             $.get(url, function(data, status) {
-                markers.clearLayers();
-                createErrorMarkers(data, election);
+                createErrorMarkers(data.anomalousPrecincts, election, "anomalous");
             });
         }
-        if(chosenCorrection != "Show anomalous errors"){
+        else if(chosenCorrection == "Show enclosed precincts") {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/EnclosedPrecinctError/" + chosenState;
+
+            console.log(url);
+
+            $.get(url, function(data, status) {
+                console.log("test");
+                createErrorMarkers(data.enclosedPrecincts, election, "enclosed");
+            });
+            console.log("after get");
+        }
+        else if(chosenCorrection == "Show overlapping precincts") {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/OverlappingPrecinctError/" + chosenState;
+
+            console.log(url);
+
+            $.get(url, function(data, status) {
+                console.log("test");
+                createErrorMarkers(data.overlappingPrecincts, election, "overlapping");
+            });
+            console.log("after get");
+        }
+        else{
             map.removeLayer(markers);
         }
     }
 
-    function createErrorMarkers(data, election){
+    function createErrorMarkers(data, election, errorType){
         markers.clearLayers();
         let temp;
         let markerLocation;
         let marker;
-        for(i in data.anomalousPrecincts){
-            if((data.anomalousPrecincts[i].errorIdentifier).includes(election)){
-                try {
-                    temp = L.geoJson({
-                        "type": "Polygon",
-                        "coordinates": data.anomalousPrecincts[i].coordinates.coordinates
-                    });
+        let label = "";
 
-                    markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
-                    marker = new L.Marker(markerLocation).on('click', markerClick);
+        console.log(errorType);
 
-                    let label = data.anomalousPrecincts[i].errorIdentifier.replace(/_/g, " ");
+        for(i in data){
+            if(errorType == "anomalous"){
+                if((data[i].errorIdentifier).includes(election)) {
 
-                    marker.bindTooltip(label,
-                        {
-                            permanent: true,
-                            direction: 'right'
-                        });
-
-                    marker.addTo(markers);
-                    map.addLayer(marker).on('click', markerClick);
-                    markers.addTo(map);
-                }
-                catch(e){
-                    console.log(i);
+                }else {
                     continue;
                 }
+                label = data[i].errorIdentifier.replace(/_/g, " ");
+
+            }else if(errorType == "enclosed"){
+                label = "Enclosed precinct: " + data[i].enclosedPrecinct
+                    + ", enclosing precinct: " + data[i].enclosingPrecinct;
+            }else if(errorType == "overlapping"){
+                label = data[i].precinct + " is overlapped by: " + data[i].overlappingPrecincts[0];
+            }
+
+            try {
+                temp = L.geoJson({
+                    "type": data[i].coordinates.type,
+                    "coordinates": data[i].coordinates.coordinates
+                });
+
+                markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
+                marker = new L.Marker(markerLocation).on('click', markerClick);
+
+                marker.bindTooltip(label,
+                    {
+                        permanent: true,
+                        direction: 'right'
+                    });
+
+                marker.addTo(markers);
+                map.addLayer(marker).on('click', markerClick);
+                markers.addTo(map);
+            }
+            catch(e){
+                console.log("Error in error number: " + i);
+                continue;
             }
         }
     }

@@ -66,6 +66,13 @@ public class AppHandler {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("OverlappingPrecinctError/{stateName}")
+    public String getOverlapPrecinctErrors(@PathParam("stateName") String state) {
+        return DatabaseSimulator.getOverlappingPrecinctErrors(state);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("NationalParks")
     public String getNationalParks(){
         return DatabaseSimulator.getNationalParks();
