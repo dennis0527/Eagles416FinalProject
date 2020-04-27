@@ -1,7 +1,7 @@
 import com.eagles.ElectionDataQuality.PersistenceLayer.PersistenceLayer;
 import org.json.simple.*;
 import org.json.simple.parser.*;
-
+import java.io.BufferedReader;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Set;
@@ -162,41 +162,41 @@ public class DatabaseSimulator {
 
     }
 
-    public static String getEnclosedPrecinctErrors(String stateName) {
-        JSONParser parser = new JSONParser();
-        try {
-            System.out.println("get enclosed precinct errors");
-            Reader reader = null;
-            if (stateName.equals("Maryland")) {
-                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Maryland_enclosed.json");
-            }
-            else if (stateName.equals("Florida")) {
-                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_enclosed.json");
-            }
-            else if (stateName.equals("New York")) {
-                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_enclosed.json"));
-            }
-            String line = reader.readLine();
-            String errorsString = "";
-            while (line != null) {
-                String precinct = line.substring(0, line.indexOf(":"));
-                errorsString += line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
-                line = reader.readLine();
-            }
-            else if (stateName.equals("Florida")) {
-                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_overlapping.json");
-            }
-            else if (stateName.equals("New York")) {
-                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/New York_overlapping.json");
-            }
-            JSONObject jsonObject = (JSONObject) parser.parse(reader);
-
-            return jsonObject.toString();
-        } catch (Exception e) {
-            System.out.println("\n\n\n\n" + e.toString());
-            return e.toString();
-        }
-    }
+//    public static String getEnclosedPrecinctErrors(String stateName) {
+//        JSONParser parser = new JSONParser();
+//        try {
+//            System.out.println("get enclosed precinct errors");
+//            Reader reader = null;
+//            if (stateName.equals("Maryland")) {
+//                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Maryland_enclosed.json");
+//            }
+//            else if (stateName.equals("Florida")) {
+//                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_enclosed.json");
+//            }
+//            else if (stateName.equals("New York")) {
+//                reader = new BufferedReader(new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/MD_enclosed.json"));
+//            }
+//            String line = reader.readLine();
+//            String errorsString = "";
+//            while (line != null) {
+//                String precinct = line.substring(0, line.indexOf(":"));
+//                errorsString += line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
+//                line = reader.readLine();
+//            }
+//            else if (stateName.equals("Florida")) {
+//                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_overlapping.json");
+//            }
+//            else if (stateName.equals("New York")) {
+//                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/New York_overlapping.json");
+//            }
+//            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+//
+//            return jsonObject.toString();
+//        } catch (Exception e) {
+//            System.out.println("\n\n\n\n" + e.toString());
+//            return e.toString();
+//        }
+//    }
 
     public static String getOverlappingPrecinctErrors(String stateName) {
         JSONParser parser = new JSONParser();
