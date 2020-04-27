@@ -52,7 +52,7 @@ public class PersistenceLayer {
 
         if(stateName.equalsIgnoreCase("Maryland")){
             State s = em.find(State.class, "state_MD");
-            return s.getEnclosedErrors();
+            return "{\"enclosedPrecincts\" : " + s.getEnclosedErrors() + "}";
         }
 
         return "";
