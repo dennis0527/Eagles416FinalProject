@@ -1,3 +1,4 @@
+import com.eagles.ElectionDataQuality.PersistenceLayer.PersistenceLayer;
 import org.json.simple.parser.ParseException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,7 +24,7 @@ public class AppHandler {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getState() {
-        String result = DatabaseSimulator.getStateJson();
+        String result = PersistenceLayer.getStatesJson();;
         System.out.println("Retrieving states");
         return result;
     }
@@ -46,21 +47,21 @@ public class AppHandler {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{stateName}/{precinctName}/neighbors")
     public String getNeighbors(@PathParam("stateName") String state, @PathParam("precinctName") String precinct){
-        return DatabaseSimulator.getNeighbors(state, precinct.replaceAll("%20", " "));
+        return PersistenceLayer.getNeighbors(state, precinct.replaceAll("%20", " "));
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("AnomalousError/{stateName}")
     public String getAnomalousErrors(@PathParam("stateName") String state) {
-        return DatabaseSimulator.getAnomalousErrors(state);
+        return PersistenceLayer.getAnomalousErrors(state);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("EnclosedPrecinctError/{stateName}")
     public String getEnclosedPrecinctErrors(@PathParam("stateName") String state) {
-        return DatabaseSimulator.getEnclosedPrecinctErrors(state);
+        return PersistenceLayer.getEnclosedPrecinctErrors(state);
     }
 
     @GET
@@ -68,5 +69,12 @@ public class AppHandler {
     @Path("NationalParks")
     public String getNationalParks(){
         return DatabaseSimulator.getNationalParks();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("OverlappingPrecinctError/{stateName}")
+    public String getOverlapPrecinctErrors(@PathParam("stateName") String state) {
+        return DatabaseSimulator.getOverlappingPrecinctErrors(state);
     }
 }

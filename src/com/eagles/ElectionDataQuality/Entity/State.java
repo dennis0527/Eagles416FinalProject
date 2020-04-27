@@ -15,6 +15,10 @@ public class State {
     private Collection<NationalPark> nationalParksByCanonicalName;
     private Precinct precinctByCanonicalName;
     private Coordinates coordinatesByCanonicalName;
+//    private String precinctJson;
+    private String enclosedErrors;
+    private String neighbors;
+    private String anomalousErrors;
 
     @Id
     @Column(name = "canonical_name", nullable = false, length = 45)
@@ -107,5 +111,45 @@ public class State {
 
     public void setCoordinatesByCanonicalName(Coordinates coordinatesByCanonicalName) {
         this.coordinatesByCanonicalName = coordinatesByCanonicalName;
+    }
+
+//    @Basic
+//    @Column(name = "precinct_json", nullable = true, length = -1)
+//    public String getPrecinctJson() {
+//        return precinctJson;
+//    }
+//
+//    public void setPrecinctJson(String precinctJson) {
+//        this.precinctJson = precinctJson;
+//    }
+
+    @Basic
+    @Column(name = "enclosed_errors", nullable = true)
+    public String getEnclosedErrors() {
+        return enclosedErrors;
+    }
+
+    public void setEnclosedErrors(String enclosedErrors) {
+        this.enclosedErrors = enclosedErrors;
+    }
+
+    @Basic
+    @Column(name = "neighbors", nullable = true, length = -1)
+    public String getNeighbors() {
+        return neighbors;
+    }
+
+    public void setNeighbors(String neighbors) {
+        this.neighbors = neighbors;
+    }
+
+    @Basic
+    @Column(name = "anomalous_errors", nullable = true)
+    public String getAnomalousErrors() {
+        return anomalousErrors;
+    }
+
+    public void setAnomalousErrors(String anomalousErrors) {
+        this.anomalousErrors = anomalousErrors;
     }
 }

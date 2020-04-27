@@ -1,3 +1,4 @@
+import com.eagles.ElectionDataQuality.PersistenceLayer.PersistenceLayer;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -8,12 +9,12 @@ import java.util.Set;
 public class DatabaseSimulator {
 
     public static String getStateJson() {
-        JSONParser parser = new JSONParser();
+//        JSONParser parser = new JSONParser();
 
-        try {
-            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
-            JSONObject jsonObject = (JSONObject) parser.parse(reader);
-            String result = "";
+//        try {
+//            Reader reader = new FileReader("/Users/sudippaul/CSE416/FinalProject/src/us-states.json");
+//            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+//            String result = "";
 
 //            Set key = jsonObject.keySet();
 //
@@ -24,13 +25,16 @@ public class DatabaseSimulator {
 //                    result = obj.toString();
 //                }
 //            }
-            result = jsonObject.toString();
+//            result = jsonObject.toString();
+////
+////            return result;
+////        } catch (Exception e) {
+////            System.out.println("\n\n\n\n\n" + e.toString());
+////            return e.toString();
+////        }
 
-            return result;
-        } catch (Exception e) {
-            System.out.println("\n\n\n\n\n" + e.toString());
-            return e.toString();
-        }
+
+        return "";
     }
 
     public static String getPrecinctJson(String stateName) {
@@ -174,7 +178,7 @@ public class DatabaseSimulator {
             String errorsString = "";
             while (line != null) {
                 String precinct = line.substring(0, line.indexOf(":"));
-                errorsString +=  line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
+                errorsString += line.replaceAll("\'", "\"").trim().substring(line.indexOf(":") + 1);
                 line = reader.readLine();
             }
             return errorsString;
@@ -183,4 +187,29 @@ public class DatabaseSimulator {
             return e.toString();
         }
     }
+
+    public static String getOverlappingPrecinctErrors(String stateName) {
+        JSONParser parser = new JSONParser();
+        try {
+            System.out.println("get overlapping precinct errors");
+            Reader reader = null;
+            if (stateName.equals("Maryland")) {
+
+            }
+            else if (stateName.equals("Florida")) {
+                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/Florida_overlapping.json");
+            }
+            else if (stateName.equals("New York")) {
+                reader = new FileReader("/Users/lacey/IdeaProjects/Eagles416FinalProject2/src/New York_overlapping.json");
+            }
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+
+            return jsonObject.toString();
+        } catch (Exception e) {
+            System.out.println("\n\n\n\n" + e.toString());
+            return e.toString();
+        }
+    }
+
+
 }
