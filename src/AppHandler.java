@@ -65,7 +65,7 @@ public class AppHandler {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("NationalParks")
     public String getNationalParks(){
-        return DatabaseSimulator.getNationalParks();
+        return PersistenceLayer.getNationalParks();
     }
 
 }

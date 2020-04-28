@@ -743,7 +743,7 @@
             e = document.getElementById("election_select");
             e.style.display = "block";
             let chosenElection = e.options[e.selectedIndex].text;
-            if (marylandToggle) {
+            if (precinctToggle) {
                 if (document.getElementById("state_change").value == 1) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/FloridaElection";
                     style1 = floridaHouse16;
@@ -844,7 +844,7 @@
                     $('#loader').addClass("hide-loader").removeClass("loader");
 
                 });
-            } else if (marylandToggle) {
+            } else if (precinctToggle) {
                 if (document.getElementById("state_change").value == 1) {
                     let url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
                     styleFunction = styleDemographicsPrecinctFlorida;
@@ -903,7 +903,7 @@
                     $('#loader').addClass("hide-loader").removeClass("loader");
                 });
 
-            } else if (marylandToggle) {
+            } else if (precinctToggle) {
                 if (document.getElementById("state_change").value == 1) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
                     popStyle = stylePopulationPrecinctFlorida;
@@ -936,7 +936,7 @@
     /* Start out the map in state form */
     statesToggle = 1;
     congressToggle = 0;
-    marylandToggle = 0;
+    precinctToggle = 0;
 
     /* Changes layers based on which data style is selected */
     function changeData() {
@@ -946,7 +946,7 @@
             case 'State':
                 congressToggle = 0;
                 statesToggle = 1;
-                marylandToggle = 0;
+                precinctToggle = 0;
                 document.getElementById("InnerGhostPrecinct").style.display = "none";
                 document.getElementById("WarningGhostPrecinct").style.display = "block";
                 document.getElementById("InnerCombinePrecinct").style.display = "none";
@@ -957,7 +957,7 @@
             case 'Congress':
                 statesToggle = 0;
                 congressToggle = 1;
-                marylandToggle = 0;
+                precinctToggle = 0;
                 document.getElementById("InnerGhostPrecinct").style.display = "none";
                 document.getElementById("WarningGhostPrecinct").style.display = "block";
                 document.getElementById("InnerCombinePrecinct").style.display = "none";
@@ -968,7 +968,7 @@
             case 'Precinct':
                 statesToggle = 0;
                 congressToggle = 0;
-                marylandToggle = 1;
+                precinctToggle = 1;
                 document.getElementById("InnerGhostPrecinct").style.display = "block";
                 document.getElementById("WarningGhostPrecinct").style.display = "none";
                 document.getElementById("InnerCombinePrecinct").style.display = "block";
@@ -1054,7 +1054,7 @@
         /* There is also properties that have 18 in them, such as ADJ_18__PO, I'm assuming this means population over 18?
             But I'm not totally sure. Possibly change data to the 18 versions if we figure out what that means. */
         /* TODO: Add in the other races */
-        if (marylandToggle) {
+        if (precinctToggle) {
             let neighbors;
 
             if (document.getElementById("state_change").value == 1) {
@@ -1270,7 +1270,7 @@
             }
         }
 
-        if (marylandToggle) {
+        if (precinctToggle) {
             grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
             for (let i = 0; i < grades.length; i++) {
                 div.innerHTML +=

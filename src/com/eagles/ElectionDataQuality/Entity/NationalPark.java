@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "NATIONAL_PARK", schema = "supaul")
+@Table(name = "NATIONAL_PARK", schema = "supaul", catalog = "")
 public class NationalPark {
     private String canonicalName;
     private String canonicalStateName;
     private String neighbors;
     private Coordinates coordinatesByCanonicalName;
     private State stateByCanonicalStateName;
+    private String geojson;
 
     @Id
     @Column(name = "canonical_name", nullable = false, length = 45)
@@ -75,5 +76,15 @@ public class NationalPark {
 
     public void setStateByCanonicalStateName(State stateByCanonicalStateName) {
         this.stateByCanonicalStateName = stateByCanonicalStateName;
+    }
+
+    @Basic
+    @Column(name = "geojson", nullable = true)
+    public String getGeojson() {
+        return geojson;
+    }
+
+    public void setGeojson(String geojson) {
+        this.geojson = geojson;
     }
 }

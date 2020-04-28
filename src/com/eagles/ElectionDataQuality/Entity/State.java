@@ -15,7 +15,6 @@ public class State {
     private Collection<NationalPark> nationalParksByCanonicalName;
     private Precinct precinctByCanonicalName;
     private Coordinates coordinatesByCanonicalName;
-//    private String precinctJson;
     private String enclosedErrors;
     private String neighbors;
     private String anomalousErrors;
@@ -112,16 +111,6 @@ public class State {
     public void setCoordinatesByCanonicalName(Coordinates coordinatesByCanonicalName) {
         this.coordinatesByCanonicalName = coordinatesByCanonicalName;
     }
-
-//    @Basic
-//    @Column(name = "precinct_json", nullable = true, length = -1)
-//    public String getPrecinctJson() {
-//        return precinctJson;
-//    }
-//
-//    public void setPrecinctJson(String precinctJson) {
-//        this.precinctJson = precinctJson;
-//    }
 
     @Basic
     @Column(name = "enclosed_errors", nullable = true)
