@@ -13,20 +13,10 @@ public class AppHandler {
     public AppHandler() {
     }
 
-    // The Java method will process HTTP GET requests
-//    @Consumes(MediaType.TEXT_PLAIN)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("/{stateName}")
-//    public String getState(@PathParam("stateName") String stateName) throws IOException, ParseException {
-//        String test =DatabaseSimulator.test();
-//        return test;
-//    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getState() {
-        String result = PersistenceLayer.getStatesJson();;
-        System.out.println("Retrieving states");
-        return result;
+        return PersistenceLayer.getStatesJson();
     }
 
     @GET
