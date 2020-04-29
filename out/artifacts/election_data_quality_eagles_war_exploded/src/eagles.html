@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <br>
-                    <button type="button" class="btn btn-info pull-left" onclick=correctionSubmitted()>Submit</button>
+                    <button type="button" class="btn btn-info pull-left" onclick=correctionSubmitted()>Find</button>
                 </div>
                 <div id="HistoryTab" class="tab-pane fade">
                     <h3>History</h3>
@@ -294,7 +294,6 @@
         mapData = data;
         /* Create layer groups for state, county, and congress*/
         mapLayers = L.layerGroup().addTo(map);
-
         /* Add data to respective layer group */
         mapJson = L.geoJson(mapData).addTo(mapLayers);
         /* Add default style and UX to each layer */
