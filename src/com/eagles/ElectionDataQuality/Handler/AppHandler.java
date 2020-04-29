@@ -30,9 +30,9 @@ public class AppHandler {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{stateName}/Districts")
-    public String getDistricts(@PathParam("stateName") String name){
-        return DatabaseSimulator.getCongressionalDistricts(name);
+    @Path("/Districts")
+    public String getDistricts(){
+        return DatabaseSimulator.getCongressionalDistricts();
     }
 
     @GET

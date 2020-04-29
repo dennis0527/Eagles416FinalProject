@@ -13,19 +13,14 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         InputStream fileName = null;
         if (stateName.equals("Maryland")) {
-            //fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/MD_data_raw.json";
             fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("MD_data_raw.json");
         } else if (stateName.equals("Florida")) {
-            //fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_demographics.json";
             fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("FL_demographics.json");
         } else if (stateName.equals("FloridaElection")) {
-            //fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/FL_precinct.json";
             fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("FL_precinct.json");
         } else if (stateName.equals("New York")) {
-            //fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/NY_demographics.json";
             fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("NY_demographics.json");
         } else if(stateName.equals("New York Election")) {
-            //fileName = "/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/";
             fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("NY_precinct_2.json");
         }
 
@@ -44,11 +39,10 @@ public class DatabaseSimulator {
 
     }
 
-    public static String getCongressionalDistricts(String stateName) {
+    public static String getCongressionalDistricts() {
         JSONParser parser = new JSONParser();
 
         try {
-            //Reader reader = new FileReader("/Users/dennisheerlein/IdeaProjects/election_data_quality_eagles/src/congressional_json.json");
             Reader reader = new InputStreamReader(DatabaseSimulator.class.getClassLoader().getResourceAsStream("congressional_json.json"));
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
 

@@ -838,7 +838,7 @@
             } else if (congressToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
 
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function (data, status) {
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Districts", function (data, status) {
 
                     mapData = data;
                     $('#loader').addClass("hide-loader").removeClass("loader");
@@ -893,7 +893,7 @@
 
             } else if (congressToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
-                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function (data, status) {
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Districts", function (data, status) {
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
@@ -1439,37 +1439,6 @@
         }
 
     }
-
-    // $("#state_change").change(function(){
-    //     if($('#data option:selected').text() == "Precinct"){
-    //         if(this.value == 2){
-    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-    //                 mapData = data;
-    //             });
-    //         }
-    //     }
-    //     else if($('#data option:selected').text() == "Congress"){
-    //         if(this.value == 2){
-    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
-    //                 mapData = data;
-    //             });
-    //         }
-    //     }
-    // });
-    // $("#data").change(function(){
-    //     if($('#state_change option:selected').text() == "Maryland"){
-    //         if(this.value == 4){
-    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland", function(data, status){
-    //                 mapData = data;
-    //             });
-    //         }
-    //         if(this.value == 3){
-    //             $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/Districts", function(data, status){
-    //                 mapData = data;
-    //             });
-    //         }
-    //     }
-    // });
 
 
 </script>
