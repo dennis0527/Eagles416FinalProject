@@ -17,8 +17,9 @@ public class Precinct {
     private ElectionData electionDataByCanonicalName;
     private Collection<Error> errorsByCanonicalName;
     private Coordinates coordinatesByCanonicalName;
-    private District districtByCanonicalName;
-    private State stateByCanonicalName;
+    private String geojson;
+    private State stateByCanonicalStateName;
+    private District districtByCanonicalDistrictName;
 
     @Id
     @Column(name = "canonical_name", nullable = false, length = 45)
@@ -133,23 +134,33 @@ public class Precinct {
         this.coordinatesByCanonicalName = coordinatesByCanonicalName;
     }
 
-    @OneToOne
-    @JoinColumn(name = "canonical_name", referencedColumnName = "canonical_name", nullable = false, insertable = false, updatable = false)
-    public District getDistrictByCanonicalName() {
-        return districtByCanonicalName;
+    @Basic
+    @Column(name = "geojson", nullable = true)
+    public String getGeojson() {
+        return geojson;
     }
 
-    public void setDistrictByCanonicalName(District districtByCanonicalName) {
-        this.districtByCanonicalName = districtByCanonicalName;
+    public void setGeojson(String geojson) {
+        this.geojson = geojson;
     }
 
-    @OneToOne
-    @JoinColumn(name = "canonical_name", referencedColumnName = "canonical_name", nullable = false, insertable = false, updatable = false)
-    public State getStateByCanonicalName() {
-        return stateByCanonicalName;
+    @ManyToOne
+    @JoinColumn(name = "canonical_state_name", referencedColumnName = "canonical_name", insertable = false, updatable = false)
+    public State getStateByCanonicalStateName() {
+        return stateByCanonicalStateName;
     }
 
-    public void setStateByCanonicalName(State stateByCanonicalName) {
-        this.stateByCanonicalName = stateByCanonicalName;
+    public void setStateByCanonicalStateName(State stateByCanonicalStateName) {
+        this.stateByCanonicalStateName = stateByCanonicalStateName;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "canonical_district_name", referencedColumnName = "canonical_name", insertable = false, updatable = false)
+    public District getDistrictByCanonicalDistrictName() {
+        return districtByCanonicalDistrictName;
+    }
+
+    public void setDistrictByCanonicalDistrictName(District districtByCanonicalDistrictName) {
+        this.districtByCanonicalDistrictName = districtByCanonicalDistrictName;
     }
 }

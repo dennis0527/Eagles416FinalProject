@@ -7,7 +7,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="-Added Maryland JQUERY to pop up when Maryland">
+      <change afterPath="$PROJECT_DIR$/src/Resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/election_data_quality_eagles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/election_data_quality_eagles.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_precinct_clean.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/District.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/District.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/Precinct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/Precinct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_precinct_clean.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/District.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/District.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/Precinct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/Precinct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="24" column="72" lean-forward="true" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+            <state relative-caret-position="901">
+              <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#435#436#0" expanded="true" />
@@ -59,70 +75,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="58" lean-forward="true" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+            <state relative-caret-position="748">
+              <caret line="44" column="59" lean-forward="true" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#0#50#1" expanded="true" />
                 <element signature="e#0#57#1" expanded="true" />
-                <element signature="e#0#57#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MD_data_raw.json">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state relative-caret-position="238">
-              <caret column="1928" lean-forward="true" selection-start-column="1928" selection-end-column="1928" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
+        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="119">
+              <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/NationalPark.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
-              <folding>
-                <element signature="e#2669#2670#0" expanded="true" />
-                <element signature="e#2699#2700#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MD_neighbors.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="921">
-              <caret line="598" column="28" selection-start-line="598" selection-end-line="598" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceContextListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5826#5827#0" expanded="true" />
+                <element signature="e#5874#5875#0" expanded="true" />
+                <element signature="e#6195#6196#0" expanded="true" />
+                <element signature="e#6249#6250#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,11 +108,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="2362">
+              <caret line="139" column="35" lean-forward="true" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/NY_neighbors.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="786" column="77" lean-forward="true" selection-end-line="14802" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="926">
+              <caret line="1052" column="34" selection-start-line="1052" selection-start-column="31" selection-end-line="1052" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="679">
+              <caret line="136" column="53" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4513#4514#0" expanded="true" />
+                <element signature="e#4560#4561#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1122">
+              <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -154,6 +172,12 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>PRES</find>
+      <find>\</find>
+      <find>stateByCanonicalName</find>
+      <find>districtByCanonicalName</find>
+      <find>PersistenceLayer</find>
+      <find>let</find>
+      <find>var</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,11 +193,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/DatabaseSimulator.java" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" />
         <option value="$PROJECT_DIR$/src/Maryland_enclosed.json" />
         <option value="$PROJECT_DIR$/src/us-states.json" />
         <option value="$PROJECT_DIR$/src/AppHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/edq.properties" />
+        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/config.properties" />
         <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" />
+        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" />
+        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" />
         <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" />
       </list>
     </option>
@@ -199,7 +227,8 @@
     <option name="CUSTOM_FILTER" value="" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
+    <option name="x" value="850" />
+    <option name="width" value="830" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectId" id="1aVYcTyoB3bJCehWFr9oTv0U7Gv" />
@@ -211,8 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,32 +255,7 @@
             <path>
               <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ElectionDataQuality" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ElectionDataQuality" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
@@ -261,19 +263,12 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -301,10 +296,13 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Resources" />
+      <recent name="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Resources" />
+      <recent name="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
     </key>
@@ -523,7 +521,11 @@
       <workItem from="1587955124923" duration="791000" />
       <workItem from="1588023761104" duration="4873000" />
       <workItem from="1588033489610" duration="490000" />
-      <workItem from="1588034004725" duration="5622000" />
+      <workItem from="1588034004725" duration="6533000" />
+      <workItem from="1588096513192" duration="102000" />
+      <workItem from="1588098093304" duration="2762000" />
+      <workItem from="1588103445324" duration="1974000" />
+      <workItem from="1588105816586" duration="6962000" />
     </task>
     <task id="LOCAL-00001" summary="First commit with test GET">
       <created>1586826033639</created>
@@ -557,12 +559,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6320000" />
+    <option name="totallyTimeSpent" value="19031000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.63673466" visible="true" weight="0.26984128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.63265306" visible="true" weight="0.23076923" />
       <window_info id="Structure" order="1" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -570,10 +572,10 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
       <window_info id="Web" order="7" show_stripe_button="false" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
-      <window_info id="Persistence" order="8" sideWeight="0.3632653" side_tool="true" visible="true" weight="0.26984128" />
+      <window_info id="Persistence" order="8" sideWeight="0.36734694" side_tool="true" visible="true" weight="0.23076923" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.7387755" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34387755" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.60408163" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -824,6 +826,11 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>props.getProperty(&quot;skeleton&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>JSONArray js = (JSONArray)</expression-string>
         <language-id>JAVA</language-id>
         <custom-info>org.json.simple.JSONArray</custom-info>
@@ -847,20 +854,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/congressional_json.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="30" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24939">
-          <caret line="1467" column="31" selection-start-line="1467" selection-start-column="31" selection-end-line="1467" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -898,23 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="93" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/NationalPark.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
@@ -926,22 +906,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java">
+    <entry file="file://$PROJECT_DIR$/src/MD_data_raw.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="238">
+          <caret column="1928" lean-forward="true" selection-start-column="1928" selection-end-column="1928" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MD_neighbors.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="58" lean-forward="true" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+        <state relative-caret-position="224">
+          <caret line="557" column="30" selection-start-line="557" selection-end-line="557" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/congressional_json.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="926">
+          <caret line="1052" column="34" selection-start-line="1052" selection-start-column="31" selection-end-line="1052" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#0#57#1" expanded="true" />
-            <element signature="e#0#57#1" expanded="true" />
+            <element signature="e#5826#5827#0" expanded="true" />
+            <element signature="e#5874#5875#0" expanded="true" />
+            <element signature="e#6195#6196#0" expanded="true" />
+            <element signature="e#6249#6250#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="136" column="53" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4513#4514#0" expanded="true" />
+            <element signature="e#4560#4561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NY_precinct_2.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="68">
+          <caret column="750" selection-start-column="750" selection-end-column="750" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NY_neighbors.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="786" column="77" lean-forward="true" selection-end-line="14802" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/New York_enclosed.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2349">
+          <caret column="2513" selection-start-column="2513" selection-end-column="2513" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="24" column="72" lean-forward="true" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+        <state relative-caret-position="901">
+          <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#435#436#0" expanded="true" />
@@ -954,25 +1014,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="2362">
+          <caret line="139" column="35" lean-forward="true" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MD_neighbors.txt">
+    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="921">
-          <caret line="598" column="28" selection-start-line="598" selection-end-line="598" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MD_data_raw.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="238">
-          <caret column="1928" lean-forward="true" selection-start-column="1928" selection-end-column="1928" />
+        <state relative-caret-position="748">
+          <caret line="44" column="59" lean-forward="true" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#0#50#1" expanded="true" />
+            <element signature="e#0#57#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,6 +1075,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1033,6 +1092,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

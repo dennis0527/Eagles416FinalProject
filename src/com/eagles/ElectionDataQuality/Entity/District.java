@@ -1,6 +1,7 @@
 package com.eagles.ElectionDataQuality.Entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +13,7 @@ public class District {
     private Demographics demographicsByCanonicalName;
     private Coordinates coordinatesByCanonicalName;
     private ElectionData electionDataByCanonicalName;
-    private Precinct precinctByCanonicalName;
+    private Collection<Precinct> precinctsByCanonicalName;
 
     @Id
     @Column(name = "canonical_name", nullable = false, length = 45)
@@ -87,12 +88,12 @@ public class District {
         this.electionDataByCanonicalName = electionDataByCanonicalName;
     }
 
-    @OneToOne(mappedBy = "districtByCanonicalName")
-    public Precinct getPrecinctByCanonicalName() {
-        return precinctByCanonicalName;
+    @OneToMany(mappedBy = "districtByCanonicalDistrictName")
+    public Collection<Precinct> getPrecinctsByCanonicalName() {
+        return precinctsByCanonicalName;
     }
 
-    public void setPrecinctByCanonicalName(Precinct precinctByCanonicalName) {
-        this.precinctByCanonicalName = precinctByCanonicalName;
+    public void setPrecinctsByCanonicalName(Collection<Precinct> precinctsByCanonicalName) {
+        this.precinctsByCanonicalName = precinctsByCanonicalName;
     }
 }

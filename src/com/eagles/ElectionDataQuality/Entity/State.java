@@ -18,6 +18,7 @@ public class State {
     private String enclosedErrors;
     private String neighbors;
     private String anomalousErrors;
+    private Collection<Precinct> precinctsByCanonicalName;
 
     @Id
     @Column(name = "canonical_name", nullable = false, length = 45)
@@ -93,15 +94,6 @@ public class State {
         this.nationalParksByCanonicalName = nationalParksByCanonicalName;
     }
 
-    @OneToOne(mappedBy = "stateByCanonicalName")
-    public Precinct getPrecinctByCanonicalName() {
-        return precinctByCanonicalName;
-    }
-
-    public void setPrecinctByCanonicalName(Precinct precinctByCanonicalName) {
-        this.precinctByCanonicalName = precinctByCanonicalName;
-    }
-
     @OneToOne
     @JoinColumn(name = "canonical_name", referencedColumnName = "canonical_name", nullable = false, insertable=false, updatable=false)
     public Coordinates getCoordinatesByCanonicalName() {
@@ -140,5 +132,14 @@ public class State {
 
     public void setAnomalousErrors(String anomalousErrors) {
         this.anomalousErrors = anomalousErrors;
+    }
+
+    @OneToMany(mappedBy = "stateByCanonicalStateName")
+    public Collection<Precinct> getPrecinctsByCanonicalName() {
+        return precinctsByCanonicalName;
+    }
+
+    public void setPrecinctsByCanonicalName(Collection<Precinct> precinctsByCanonicalName) {
+        this.precinctsByCanonicalName = precinctsByCanonicalName;
     }
 }

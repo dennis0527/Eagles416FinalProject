@@ -8,20 +8,25 @@ import org.json.simple.parser.JSONParser;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.servlet.ServletContext;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 public class PersistenceLayer {
+    private static Properties props = new Properties();
+    private static String propFileName = "config.properties";
 
     public static String getStatesJson() {
         try{
+            InputStream is = PersistenceLayer.class.getClassLoader().getResourceAsStream(propFileName);
+            props.load(is);
             EntityManager em = getEntityManagerInstance();
             Query query = em.createQuery("Select s from State s order by s.canonicalName asc");
             List<State> states = (List<State>)query.getResultList();
             JSONParser parser = new JSONParser();
-            JSONObject json = (JSONObject) parser.parse("{\"type\": \"FeatureCollection\", \"crs\": {\"type\": " +
-                    "\"name\", \"properties\": {\"name\": \"urn:ogc:def:crs:OGC:1.3:CRS84\"}}, \"features\": []}");
+            JSONObject json = (JSONObject) parser.parse(props.getProperty("skeleton"));
             JSONArray features = (JSONArray) json.get("features");
             for(State s : states){
                 features.add(parser.parse(s.getGeojson()));
@@ -70,12 +75,13 @@ public class PersistenceLayer {
 
     public static String getNationalParks() {
         try {
+            InputStream is = PersistenceLayer.class.getClassLoader().getResourceAsStream(propFileName);
+            props.load(is);
             EntityManager em = getEntityManagerInstance();
             Query query = em.createQuery("Select p from NationalPark p order by p.canonicalName asc");
             List<NationalPark> nationalParks = (List<NationalPark>)query.getResultList();
             JSONParser parser = new JSONParser();
-            JSONObject json = (JSONObject) parser.parse("{\"type\": \"FeatureCollection\", \"crs\": {\"type\": " +
-                    "\"name\", \"properties\": {\"name\": \"urn:ogc:def:crs:OGC:1.3:CRS84\"}}, \"features\": []}");
+            JSONObject json = (JSONObject) parser.parse(props.getProperty("skeleton"));
             JSONArray features = (JSONArray) json.get("features");
             for(NationalPark park : nationalParks){
                 features.add(parser.parse(park.getGeojson()));
@@ -85,7 +91,20 @@ public class PersistenceLayer {
             e.printStackTrace();
             return null;
         }
+    }
 
+    public static String getPrecinctData(String stateName){
+
+        try {
+            InputStream is = PersistenceLayer.class.getClassLoader().getResourceAsStream(propFileName);
+            props.load(is);
+            EntityManager entityManager = getEntityManagerInstance();
+
+            return "";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
