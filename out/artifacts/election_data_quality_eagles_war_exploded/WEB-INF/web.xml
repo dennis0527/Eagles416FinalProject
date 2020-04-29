@@ -6,7 +6,7 @@
 
     <filter>
         <filter-name>CorsFilter</filter-name>
-        <filter-class>CORSFilter</filter-class>
+        <filter-class>com.eagles.ElectionDataQuality.AppControl.CORSFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CorsFilter</filter-name>
