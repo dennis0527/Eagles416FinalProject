@@ -13,7 +13,6 @@ public class State {
     private String geojson;
     private Demographics demographicsByCanonicalName;
     private Collection<NationalPark> nationalParksByCanonicalName;
-    private Precinct precinctByCanonicalName;
     private Coordinates coordinatesByCanonicalName;
     private String enclosedErrors;
     private String neighbors;

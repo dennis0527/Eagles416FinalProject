@@ -7,100 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e3a6e5-0bd9-4ad4-b2c5-30aef414a83c" name="Default Changelist" comment="-Added Maryland JQUERY to pop up when Maryland">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/src/Resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/election_data_quality_eagles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/election_data_quality_eagles.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_precinct_clean.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/District.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/District.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/Precinct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/Precinct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/Entity/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_precinct_clean.geojson" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/District.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/District.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/Precinct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/Precinct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_enclosed.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/META-INF/election_data_quality_eagles.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/META-INF/election_data_quality_eagles.kotlin_module" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/Entity/State.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Handler/DatabaseSimulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/election_data_quality_eagles.iml" beforeDir="false" afterPath="$PROJECT_DIR$/election_data_quality_eagles.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/AppHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/CORSFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/DatabaseSimulator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_demographicscopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_national_park.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_neighbors.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/FL_precinctcopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/Florida_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/Florida_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/MD_anomalous.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/MD_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/MD_neighbors.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/META-INF/election_data_quality_eagles.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/META-INF/election_data_quality_eagles.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/Maryland_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/MyApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/NY_precinct_lines.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/New York_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/New York_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/classes/us-states.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/src/eagles.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/election_data_quality_eagles_war_exploded/src/eagles.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/AppHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/CORSFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/DatabaseSimulator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_demographicscopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_national_park.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_neighbors.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/FL_precinctcopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/Florida_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/Florida_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/MD_anomalous.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/MD_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/MD_neighbors.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/META-INF/election_data_quality_eagles.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/META-INF/election_data_quality_eagles.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/Maryland_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/MyApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/NY_precinct_lines.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/New York_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/New York_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/election_data_quality_eagles/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/election_data_quality_eagles/us-states.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Handler/AppHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CORSFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/AppControl/CORSFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DatabaseSimulator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_demographics.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/FL_demographics.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_demographicscopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_national_park.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_neighbors.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_precinct.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/FL_precinct.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FL_precinctcopy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Florida_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Florida_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MD_anomalous.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MD_data_raw.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/MD_data_raw.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MD_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MD_neighbors.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Maryland_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/AppControl/MyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NY_demographics.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/NY_demographics.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NY_neighbors.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/NY_neighbors.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NY_precinct_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/NY_precinct_2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NY_precinct_lines.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/New York_enclosed.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/New York_overlapping.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/congressional_json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/congressional_json.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/us-states.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/eagles.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/eagles.html" afterDir="false" />
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,112 +46,15 @@
   <component name="FavoritesManager">
     <favorites_list name="Eagles416FinalProject2" />
   </component>
-<<<<<<< HEAD
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#435#436#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#2139#2140#0" expanded="true" />
-                <element signature="e#2197#2198#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="59" lean-forward="true" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#0#50#1" expanded="true" />
-                <element signature="e#0#57#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5826#5827#0" expanded="true" />
-                <element signature="e#5874#5875#0" expanded="true" />
-                <element signature="e#6195#6196#0" expanded="true" />
-                <element signature="e#6249#6250#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2362">
-              <caret line="139" column="35" lean-forward="true" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/NY_neighbors.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="786" column="77" lean-forward="true" selection-end-line="14802" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="926">
-              <caret line="1052" column="34" selection-start-line="1052" selection-start-column="31" selection-end-line="1052" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="136" column="53" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4513#4514#0" expanded="true" />
-                <element signature="e#4560#4561#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
   </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -246,20 +64,6 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>PRES</find>
-      <find>\</find>
-      <find>stateByCanonicalName</find>
-      <find>districtByCanonicalName</find>
-      <find>PersistenceLayer</find>
-      <find>let</find>
-      <find>var</find>
-    </findStrings>
-  </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -269,26 +73,6 @@
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/DatabaseSimulator.java" />
-        <option value="$PROJECT_DIR$/src/Maryland_enclosed.json" />
-        <option value="$PROJECT_DIR$/src/us-states.json" />
-        <option value="$PROJECT_DIR$/src/AppHandler.java" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/edq.properties" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/config.properties" />
-        <option value="$PROJECT_DIR$/src/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java" />
-        <option value="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java" />
-      </list>
-    </option>
-  </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
       <set>
@@ -310,53 +94,13 @@
     <option name="CUSTOM_FILTER" value="" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="850" />
-    <option name="width" value="830" />
+    <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectId" id="1aVYcTyoB3bJCehWFr9oTv0U7Gv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FinalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FinalProject" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
-  </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -382,17 +126,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
-<<<<<<< HEAD
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Resources" />
-      <recent name="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Resources" />
-      <recent name="$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
-=======
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.eagles.ElectionDataQuality.Handler" />
       <recent name="com.eagles.ElectionDataQuality.AppControl" />
@@ -400,7 +136,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/web" />
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.eagles.ElectionDataQuality.Entity" />
@@ -412,6 +147,18 @@
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/classes" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="TomEE 9.0.30" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 9.0.30" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -607,11 +354,8 @@
       <workItem from="1587955124923" duration="791000" />
       <workItem from="1588023761104" duration="4873000" />
       <workItem from="1588033489610" duration="490000" />
-      <workItem from="1588034004725" duration="6533000" />
-      <workItem from="1588096513192" duration="102000" />
-      <workItem from="1588098093304" duration="2762000" />
-      <workItem from="1588103445324" duration="1974000" />
-      <workItem from="1588105816586" duration="6962000" />
+      <workItem from="1588034004725" duration="5622000" />
+      <workItem from="1588124425760" duration="293000" />
     </task>
     <task id="LOCAL-00001" summary="First commit with test GET">
       <created>1586826033639</created>
@@ -644,53 +388,49 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-<<<<<<< HEAD
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19031000" />
+    <option name="totallyTimeSpent" value="293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.63265306" visible="true" weight="0.23076923" />
-      <window_info id="Structure" order="1" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
-      <window_info id="Web" order="7" show_stripe_button="false" sideWeight="0.47142857" side_tool="true" weight="0.26190478" />
-      <window_info id="Persistence" order="8" sideWeight="0.36734694" side_tool="true" visible="true" weight="0.23076923" />
+      <window_info id="Persistence" side_tool="true" />
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Capture Tool" />
+      <window_info id="Web" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Application Servers" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34387755" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.60408163" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32959184" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32959184" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32959184" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32959184" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32959184" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32959184" />
-      <window_info anchor="bottom" id="Database Console" order="15" weight="0.32959184" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="CDI" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32967034" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="CDI" order="6" />
-      <window_info anchor="right" id="Database" order="7" weight="0.25274727" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Bean Validation" order="10" weight="0.32967034" />
     </layout>
   </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -927,11 +667,6 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>props.getProperty(&quot;skeleton&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>JSONArray js = (JSONArray)</expression-string>
         <language-id>JAVA</language-id>
         <custom-info>org.json.simple.JSONArray</custom-info>
@@ -954,266 +689,9 @@
       </expression>
     </expressions>
   </component>
-<<<<<<< HEAD
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FL_neighbors.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0b45c2e3-ba92-492e-a994-92fc6eae9853/console.sql">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/us-states.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Maryland_enclosed.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-end-column="27629" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceContextListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/NationalPark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
-          <folding>
-            <element signature="e#2669#2670#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MD_data_raw.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="238">
-          <caret column="1928" lean-forward="true" selection-start-column="1928" selection-end-column="1928" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MD_neighbors.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="557" column="30" selection-start-line="557" selection-end-line="557" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/congressional_json.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/eagles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="926">
-          <caret line="1052" column="34" selection-start-line="1052" selection-start-column="31" selection-end-line="1052" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/Precinct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5826#5827#0" expanded="true" />
-            <element signature="e#5874#5875#0" expanded="true" />
-            <element signature="e#6195#6196#0" expanded="true" />
-            <element signature="e#6249#6250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="136" column="53" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4513#4514#0" expanded="true" />
-            <element signature="e#4560#4561#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/Entity/District.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NY_precinct_2.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="68">
-          <caret column="750" selection-start-column="750" selection-end-column="750" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NY_neighbors.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="786" column="77" lean-forward="true" selection-end-line="14802" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/New York_enclosed.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2349">
-          <caret column="2513" selection-start-column="2513" selection-end-column="2513" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#435#436#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#2139#2140#0" expanded="true" />
-            <element signature="e#2197#2198#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DatabaseSimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2362">
-          <caret line="139" column="35" lean-forward="true" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eagles/ElectionDataQuality/PersistenceLayer/PersistenceLayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="59" lean-forward="true" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#0#50#1" expanded="true" />
-            <element signature="e#0#57#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>election_data_quality_eagles:war exploded</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>JPA</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>election_data_quality_eagles</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>JAX-RS-2.1.1</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
-  </component>
-=======
->>>>>>> e9294cf595c44d428766ce8feeeedc16d2800255
 </project>
