@@ -13,15 +13,13 @@ public class DatabaseSimulator {
     public static String getPrecinctJson(String stateName) {
         InputStream fileName = null;
         if (stateName.equals("Maryland")) {
-            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("MD_data_raw.json");
-        } else if (stateName.equals("Florida")) {
-            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("FL_demographics.json");
-        } else if (stateName.equals("FloridaElection")) {
-            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("FL_precinct.json");
-        } else if (stateName.equals("New York")) {
-            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("NY_demographics.json");
-        } else if(stateName.equals("New York Election")) {
-            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("NY_precinct_2.json");
+            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("MD_precinct.geojson");
+        }
+        else if (stateName.equals("Florida")) {
+            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("FL_precinct.geojson");
+        }
+        else if (stateName.equals("New York")) {
+            fileName = DatabaseSimulator.class.getClassLoader().getResourceAsStream("NY_precinct.geojson");
         }
 
 

@@ -39,20 +39,17 @@ public class PersistenceLayer {
     }
 
     public static String getNeighbors(String stateName, String precinctName) {
-
         EntityManager em = getEntityManagerInstance();
-        if (stateName.equalsIgnoreCase("Maryland")) {
-            State state = em.find(State.class, "state_MD");
-            ArrayList<String> neighbors = new ArrayList<>(Arrays.asList(state.getNeighbors().split("\n")));
-            for (String s : neighbors) {
-                String precinct = s.substring(0, s.indexOf(":"));
-                if (precinct.equalsIgnoreCase(precinctName)) {
-                    return s.replaceAll("\'", "\"").trim().substring(s.indexOf(":") + 1);
-                }
+        Query query = em.createQuery("Select s from State s where s.fullName = " + "\"" + stateName + "\"");
+        State state = (State)query.getSingleResult();
+        ArrayList<String> neighbors = new ArrayList<>(Arrays.asList(state.getNeighbors().split("\n")));
+        for (String s : neighbors) {
+            String precinct = s.substring(0, s.indexOf(":"));
+            if (precinct.equalsIgnoreCase(precinctName)) {
+                return s.replaceAll("\'", "\"").trim().substring(s.indexOf(":") + 1);
             }
-            return null;
         }
-        return "";
+        return "none";
     }
 
     public static String getAnomalousErrors(String stateName) {

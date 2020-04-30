@@ -317,8 +317,10 @@
         zoomOffset: -1
     }).addTo(map);
 
-
-    statesToggle = 1;
+    /* Start out the map in state form */
+    let statesToggle = 1;
+    let congressToggle = 0;
+    let precinctToggle = 0;
 
     function statePopColor(d) {
         return d > 500 ? '#800026' :
@@ -339,7 +341,7 @@
                                     '#FFEDA0';
     }
 
-    function marylandPopColor(a) {
+    function precinctPopColor(a) {
         return a > 20000 ? '#800026' :
             a > 10000 ? '#BD0026' :
                 a > 5000 ? '#E31A1C' :
@@ -408,9 +410,9 @@
     }
 
     /* Population precinct style, scaling number is 20000 */
-    function stylePopulationPrecinctMaryland(feature) {
+    function stylePopulationPrecinct(feature) {
         return {
-            fillColor: marylandPopColor(feature.properties.ADJ_POP),
+            fillColor: precinctPopColor(feature.properties.POP),
             weight: 1,
             opacity: 0.7,
             color: 'white',
@@ -419,29 +421,6 @@
         };
     }
 
-    function stylePopulationPrecinctFlorida(feature) {
-        return {
-            fillColor: marylandPopColor(feature.properties.TOTALPOP),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function stylePopulationPrecinctNewYork(feature) {
-        return {
-            fillColor: marylandPopColor((feature.properties.pop2000)),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    /* Precinct only for now, styles based on % white pop*/
     function styleDemographics(feature) {
         return {
             fillColor: getDemographicsColor((feature.properties.ADJ_WHITE / feature.properties.ADJ_POP) * 100),
@@ -453,22 +432,9 @@
         };
     }
 
-    /* Precinct only for now, styles based on % white pop*/
-    function styleDemographicsPrecinctFlorida(feature) {
+    function styleDemographicsPrecinct(feature) {
         return {
-            fillColor: getDemographicsColor((feature.properties.WHITE / feature.properties.TOTALPOP) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    /* Precinct only for now, styles based on % white pop*/
-    function styleDemographicsPrecinctNewYork(feature) {
-        return {
-            fillColor: getDemographicsColor((feature.properties.white / feature.properties.pop2000) * 100),
+            fillColor: getDemographicsColor((feature.properties.WHITE / feature.properties.POP) * 100),
             weight: 1,
             opacity: 0.7,
             color: 'white',
@@ -511,7 +477,7 @@
         };
     }
 
-    function marylandHouse16(feature) {
+    function precinctHouse16(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USH16D) / (feature.properties.USH16D + feature.properties.USH16R)) * 100),
             weight: 1,
@@ -522,7 +488,7 @@
         };
     }
 
-    function marylandPres16(feature) {
+    function precinctPres16(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.PRES16D) / (feature.properties.PRES16D + feature.properties.PRES16R)) * 100),
             weight: 1,
@@ -533,75 +499,9 @@
         };
     }
 
-    function marylandHouse18(feature) {
+    function precinctHouse18(feature) {
         return {
             fillColor: getElectionColor(((feature.properties.USH18D) / (feature.properties.USH18D + feature.properties.USH18R)) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function floridaPres16(feature) {
-        return {
-            fillColor: getElectionColor(((feature.properties.G16PREDCli) / (feature.properties.G16PRERTru + feature.properties.G16PREDCli)) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function floridaHouse18(feature) {
-        return {
-            fillColor: getElectionColor(((feature.properties.USHD18) / (feature.properties.USHR18 + feature.properties.USHD18)) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function floridaHouse16(feature) {
-        return {
-            fillColor: getElectionColor(((feature.properties.USHD16) / (feature.properties.USHD16 + feature.properties.USHR16)) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function newYorkPres16(feature) {
-        return {
-            fillColor: getElectionColor((feature.properties.P_PCTClint) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function newYorkHouse18(feature) {
-        return {
-            fillColor: getElectionColor(((feature.properties.USHD18) / (feature.properties.USHR18 + feature.properties.USHD18)) * 100),
-            weight: 1,
-            opacity: 0.7,
-            color: 'white',
-            dashArray: '1',
-            fillOpacity: 0.7
-        };
-    }
-
-    function newYorkHouse16(feature) {
-        return {
-            fillColor: getElectionColor(((feature.properties.USHD16) / (feature.properties.USHD16 + feature.properties.USHR16)) * 100),
             weight: 1,
             opacity: 0.7,
             color: 'white',
@@ -736,31 +636,27 @@
         }
         let e = document.getElementById("data_type_select");
         let chosenData = e.options[e.selectedIndex].text;
-
+        let url;
+        if (document.getElementById("state_change").value == 1) {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
+        } else if (document.getElementById("state_change").value == 2) {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
+        } else if (document.getElementById("state_change").value == 3) {
+            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York";
+        }
+        let style1;
+        let style2;
+        let style3;
         if (chosenData == "Election Data") {
             map.removeControl(legend);
             e = document.getElementById("election_select");
             e.style.display = "block";
             let chosenElection = e.options[e.selectedIndex].text;
+
             if (precinctToggle) {
-                if (document.getElementById("state_change").value == 1) {
-                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/FloridaElection";
-                    style1 = floridaHouse16;
-                    style2 = floridaHouse18;
-                    style3 = floridaPres16;
-                } else if (document.getElementById("state_change").value == 2) {
-                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
-                    style1 = marylandHouse16;
-                    style2 = marylandHouse18;
-                    style3 = marylandPres16;
-                } else if (document.getElementById("state_change").value == 3) {
-                    url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York Election";
-                    style1 = newYorkHouse16;
-                    style2 = newYorkHouse18;
-                    style3 = newYorkPres16;
-                } else {
-                    return;
-                }
+                style1 = precinctHouse16;
+                style2 = precinctHouse18;
+                style3 = precinctPres16;
                 $('#loader').addClass("loader").removeClass("hide-loader");
                 $.get(url, function (data, status) {
                     mapData = data;
@@ -788,9 +684,7 @@
                 });
             } else if (statesToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function (data, status) {
-
                     mapData = data;
                     if (chosenElection == "2016 Congressional Election") {
                         mapLayers.removeLayer(mapJson);
@@ -819,12 +713,9 @@
             map.removeControl(legend);
             e = document.getElementById("election_select");
             e.style.display = "none";
-
             if (statesToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function (data, status) {
-
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
@@ -832,32 +723,25 @@
                         onEachFeature: onEachFeature
                     }).addTo(mapLayers);
                     $('#loader').addClass("hide-loader").removeClass("loader");
-
                 });
             } else if (congressToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/Districts", function (data, status) {
-
                     mapData = data;
                     $('#loader').addClass("hide-loader").removeClass("loader");
-
                 });
             } else if (precinctToggle) {
+                let styleFunction = styleDemographicsPrecinct;
                 if (document.getElementById("state_change").value == 1) {
                     let url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
-                    styleFunction = styleDemographicsPrecinctFlorida;
                 } else if (document.getElementById("state_change").value == 2) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
-                    styleFunction = styleDemographics;
                 } else if (document.getElementById("state_change").value == 3) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York"
-                    styleFunction = styleDemographicsPrecinctNewYork;
                 } else {
                     return;
                 }
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get(url, function (data, status) {
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
@@ -871,15 +755,11 @@
             }
         } else if (chosenData == "Population Data") {
             // legend.addTo(map);
-
             e = document.getElementById("election_select");
             e.style.display = "none";
-
             if (statesToggle) {
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/", function (data, status) {
-
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
@@ -901,24 +781,19 @@
                     }).addTo(mapLayers);
                     $('#loader').addClass("hide-loader").removeClass("loader");
                 });
-
             } else if (precinctToggle) {
+                let popStyle = stylePopulationPrecinct;
                 if (document.getElementById("state_change").value == 1) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Florida";
-                    popStyle = stylePopulationPrecinctFlorida;
                 } else if (document.getElementById("state_change").value == 2) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/Maryland";
-                    popStyle = stylePopulationPrecinctMaryland;
                 } else if (document.getElementById("state_change").value == 3) {
                     url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Precinct/New York";
-                    popStyle = stylePopulationPrecinctNewYork
                 } else {
                     return;
                 }
                 $('#loader').addClass("loader").removeClass("hide-loader");
-
                 $.get(url, function (data, status) {
-
                     mapData = data;
                     mapLayers.removeLayer(mapJson);
                     mapJson = L.geoJson(mapData, {
@@ -926,16 +801,10 @@
                         onEachFeature: onEachFeature
                     }).addTo(mapLayers);
                     $('#loader').addClass("hide-loader").removeClass("loader");
-
                 });
             }
         }
     }
-
-    /* Start out the map in state form */
-    statesToggle = 1;
-    congressToggle = 0;
-    precinctToggle = 0;
 
     /* Changes layers based on which data style is selected */
     function changeData() {
@@ -1055,389 +924,270 @@
         /* TODO: Add in the other races */
         if (precinctToggle) {
             let neighbors;
-
-            if (document.getElementById("state_change").value == 1) {
-                if (chosenData == "Population Data") {
-                    legend.addTo(map);
-                    let ref = this;
-                    ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
-                        '<b>' + props.AUTOID + '</b><br />' + props.TOTALPOP + ' people '
-                        + '<h5><i>Source: US Census</i>' //dummy data to remove
-                        : 'Hover over a precinct');
+            let neighbors_url;
+            let ref = this;
+            if (props) {
+                switch (document.getElementById("state_change").value) {
+                    case "1":
+                        neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Florida/" + props.CANON_NAME + "/neighbors";
+                        break;
+                    case "2":
+                        neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.CANON_NAME + "/neighbors";
+                        break;
+                    case "3":
+                        neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/New York/" + props.CANON_NAME + "/neighbors";
+                        break;
+                    default:
+                        console.log("NEIGHBORS_URL: " + "NOT FOUND")
                 }
-                if (chosenData == "Demographic Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                        '<b>' + props.AUTOID + '</b><br />' + 'percent white: ' + props.PCT_WHITE.toFixed(2) + '%' +
-                        '</b><br />' + 'percent black: ' + props.PCT_BLACK.toFixed(2) + '%' +
-                        '</b><br />' + 'percent asian: ' + props.PCT_ASIAN.toFixed(2) + '%'
-                        + '<h5><i>Source: US Census</i>' //dummy data to remove
-                        : 'Hover over a precinct');
-                }
-                if (chosenData == "Election Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    if (props) {
-                        let neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Florida/" + props.CANON_NAME + "/neighbors";
-                        $.get(neighbors_url, function (data, status) {
-                            neighbors = data.neighbors;
-                            if (chosenElection == "2016 Presidential Election") {
-                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.G16PREDCli) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.G16PRERTru) / (props.G16PREDCli + props.G16PRERTru)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Florida State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2016 Congressional Election") {
-                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Florida State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2018 Congressional Election") {
-                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Florida State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            }
-                        });
+                $.get(neighbors_url, function (data, status) {
+                    neighbors = data.neighbors;
+                    if (chosenData == "Population Data") {
+                        legend.addTo(map);
+                        ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
+                            '<b>' + props.CANON_NAME + '</b><br />' + props.POP + ' people '
+                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                            + '<h5><i>Source: US Census</i>' //dummy data to remove
+                            : 'Hover over a precinct');
                     }
-                }
-            } else if (document.getElementById("state_change").value == 2) {
-                if (props) {
-                }
-                if (chosenData == "Population Data") {
-                    legend.addTo(map);
-                    let ref = this;
-                    if (props) {
-                        let neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-                        $.get(neighbors_url, function (data, status) {
-
-                            neighbors = data.neighbors;
-                            ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
-                                '<b>' + props.NAME + '</b><br />' + props.ADJ_POP + ' people / mi<sup>2</sup>' + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                + '<h5><i>Source: US Census</i>' //dummy data to remove
-                                : 'Hover over a state');
-                        });
+                    if (chosenData == "Demographic Data") {
+                        map.removeControl(legend);
+                        ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
+                            '<b>' + props.CANON_NAME + '</b><br />' + 'white population: ' + props.WHITE +
+                            '</b><br />' + 'black population: ' + props.BLACK
+                            + '</b><br />' + 'asian population: ' + props.ASIAN
+                            + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                            + '<h5><i>Source: US Census</i>' //dummy data to remove
+                            : 'Hover over a precinct');
                     }
-                }
-                if (chosenData == "Demographic Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    if (props) {
-                        let neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
-                        $.get(neighbors_url, function (data, status) {
-
-                            neighbors = data.neighbors;
-                            ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                                '<b>' + props.NAME + '</b><br />' + 'percent white: ' + ((props.ADJ_WHITE / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                                '</b><br />' + 'percent black: ' + ((props.ADJ_BLACK / props.ADJ_POP) * 100).toFixed(2) + '%' +
-                                '</b><br />' + 'percent asian: ' + ((props.ADJ_ASIAN / props.ADJ_POP) * 100).toFixed(2) + '%'
+                    if (chosenData == "Election Data") {
+                        map.removeControl(legend);
+                        if (chosenElection == "2016 Presidential Election") {
+                            ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
+                                '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.PRES16D) / (props.PRES16D + props.PRES16R)) * 100).toFixed(2) +
+                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.PRES16R) / (props.PRES16D + props.PRES16R)) * 100).toFixed(2) + '%'
                                 + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                + '<h5><i>Source: US Census</i>' //dummy data to remove
+                                + '<h5><i>Source: State Board of Elections</i>'
                                 : 'Hover over a precinct');
-
-                        });
+                        } else if (chosenElection == "2016 Congressional Election") {
+                            ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
+                                '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D) / (props.USH16D + props.USH16R)) * 100).toFixed(2) +
+                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R) / (props.USH16D + props.USH16R)) * 100).toFixed(2) + '%'
+                                + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                + '<h5><i>Source: State Board of Elections</i>'
+                                : 'Hover over a precinct');
+                        } else if (chosenElection == "2018 Congressional Election") {
+                            ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
+                                '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH18D) / (props.USH18D + props.USH18R)) * 100).toFixed(2) +
+                                '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH18R) / (props.USH18D + props.USH18R)) * 100).toFixed(2) + '%'
+                                + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
+                                + '<h5><i>Source: State Board of Elections</i>'
+                                : 'Hover over a precinct');
+                        }
                     }
-                }
-                if (chosenData == "Election Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    if (props) {
-                        let neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/Maryland/" + props.NAME + "/neighbors";
-
-                        $.get(neighbors_url, function (data, status) {
-
-                            if (chosenElection == "2016 Presidential Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                                    '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.PRES16D) / (props.PRES16D + props.PRES16R)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.PRES16R) / (props.PRES16D + props.PRES16R)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Maryland State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2016 Congressional Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH16D) / (props.USH16D + props.USH16R)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH16R) / (props.USH16D + props.USH16R)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Maryland State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2018 Congressional Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USH18D) / (props.USH18D + props.USH18R)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USH18R) / (props.USH18D + props.USH18R)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: Maryland State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            }
-
-                        });
-                    }
-                }
-            } else if (document.getElementById("state_change").value == 3) {
-                if (chosenData == "Population Data") {
-                    legend.addTo(map);
-                    let ref = this;
-                    ref._div.innerHTML = '<h4>Population Data</h4>' + (props ?
-                        '<b>' + props.id + '</b><br />' + props.pop2000 + ' people '
-                        + '<h5><i>Source: US Census</i>' //dummy data to remove
-                        : 'Hover over a state');
-                }
-                if (chosenData == "Demographic Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    ref._div.innerHTML = '<h4>Demographics</h4>' + (props ?
-                        '<b>' + props.id + '</b><br />' + 'percent white: ' + ((props.white / props.pop2000) * 100).toFixed(2) + '%' +
-                        '</b><br />' + 'percent black: ' + ((props.black / props.pop2000) * 100).toFixed(2) + '%' +
-                        '</b><br />' + 'percent asian: ' + ((props.asian / props.pop2000) * 100).toFixed(2) + '%'
-                        + '<h5><i>Source: US Census</i>' //dummy data to remove
-                        : 'Hover over a precinct');
-                }
-                if (chosenData == "Election Data") {
-                    map.removeControl(legend);
-                    let ref = this;
-                    let neighbors = "None.";
-                    if (props) {
-                        let neighbors_url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/New York/" + props.CANON_NAME + "/neighbors";
-                        $.get(neighbors_url, function (data, status) {
-                            if (chosenElection == "2016 Presidential Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2016 Presidential Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.P_Clinton) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.P_Trump) / (props.P_Clinton + props.P_Trump)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: New York State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2016 Congressional Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2016 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR16) / (props.USHD16 + props.USHR16)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: New York State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            } else if (chosenElection == "2018 Congressional Election") {
-                                neighbors = data.neighbors;
-                                ref._div.innerHTML = '<h4>2018 Congressional Election</h4>' + (props ?
-                                    '<b>' + props.CANON_NAME + '</b><br />' + 'Democrat Percent: ' + (((props.USHD18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) +
-                                    '%' + '</b><br />' + 'Republican Percent: ' + (((props.USHR18) / (props.USHD18 + props.USHR18)) * 100).toFixed(2) + '%'
-                                    + '<h6>Neighbors: ' + neighbors.join(', ') + '</h6>'
-                                    + '<h5><i>Source: New York State Board of Elections</i>'
-                                    : 'Hover over a precinct');
-                            }
-                        });
-                    }
-                }
+                });
             }
         }
     };
 
-    info.addTo(map);
+        info.addTo(map);
 
-    /* Key/legend to explain the colors */
-    let legend = L.control({position: 'bottomright'});
+        /* Key/legend to explain the colors */
+        let legend = L.control({position: 'bottomright'});
 
-    /* We make our control based on the population density and add labels for it */
-    legend.onAdd = function (map) {
+        /* We make our control based on the population density and add labels for it */
+        legend.onAdd = function (map) {
 
-        let div = L.DomUtil.create('div', 'info legend'),
-            grades,
-            labels = [];
+            let div = L.DomUtil.create('div', 'info legend'),
+                grades,
+                labels = [];
 
-        if (statesToggle) {
-            grades = [0, 300, 400, 500];
-            for (let i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + statePopColor((grades[i] + 1)) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            if (statesToggle) {
+                grades = [0, 300, 400, 500];
+                for (let i = 0; i < grades.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + statePopColor((grades[i] + 1)) + '"></i> ' +
+                        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                }
             }
-        }
-        if (congressToggle) {
-            grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
-            for (let i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + congressPopColor((grades[i] + 1)) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            if (congressToggle) {
+                grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
+                for (let i = 0; i < grades.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + congressPopColor((grades[i] + 1)) + '"></i> ' +
+                        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                }
             }
-        }
 
-        if (precinctToggle) {
-            grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
-            for (let i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + marylandPopColor((grades[i] + 1)) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            if (precinctToggle) {
+                grades = [0, 1000, 2000, 3000, 4000, 5000, 10000, 20000];
+                for (let i = 0; i < grades.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + precinctPopColor((grades[i] + 1)) + '"></i> ' +
+                        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                }
             }
+
+            // loop through our density intervals and generate a label with a colored square for each interval
+
+            return div;
+        };
+
+        function changeStateView() {
+            let e = document.getElementById("state_change");
+            let chosenState = e.options[e.selectedIndex].text;
+            if (chosenState == "Florida") {
+                map.flyTo([27.66, -81.5], 6);
+            } else if (chosenState == "Maryland") {
+                map.flyTo([39.04, -76.64], 7.5);
+            } else if (chosenState == "New York") {
+                map.flyTo([43.3, -74.21], 6.5);
+            } else if (chosenState == "U.S. Map") {
+                map.flyTo([37.8, -96], 4);
+            }
+
         }
 
-        // loop through our density intervals and generate a label with a colored square for each interval
-
-        return div;
-    };
-
-    function changeStateView() {
-        let e = document.getElementById("state_change");
-        let chosenState = e.options[e.selectedIndex].text;
-        if (chosenState == "Florida") {
-            map.flyTo([27.66, -81.5], 6);
-        } else if (chosenState == "Maryland") {
-            map.flyTo([39.04, -76.64], 7.5);
-        } else if (chosenState == "New York") {
-            map.flyTo([43.3, -74.21], 6.5);
-        } else if (chosenState == "U.S. Map") {
-            map.flyTo([37.8, -96], 4);
-        }
-
-    }
-
-    /*
+        /*
     For the demo: Clears out the textarea when the comment is submitted, and shows a popup confirming comment
     was posted.
     */
-    function clearCommentTextArea() {
-        alert("Comment submitted");
-        document.getElementById("Comment-TextArea").value = '';
-    }
+        function clearCommentTextArea() {
+            alert("Comment submitted");
+            document.getElementById("Comment-TextArea").value = '';
+        }
 
-    function correctionSubmitted() {
-        document.getElementById("correction-state").selectedIndex = 0
-        document.getElementById("correction-precinct").selectedIndex = 0
-        document.getElementById("correction-election").selectedIndex = 0
-        document.getElementById("correction-list").selectedIndex = 0
-        map.removeLayer(markers);
+        function correctionSubmitted() {
+            document.getElementById("correction-state").selectedIndex = 0
+            document.getElementById("correction-precinct").selectedIndex = 0
+            document.getElementById("correction-election").selectedIndex = 0
+            document.getElementById("correction-list").selectedIndex = 0
+            map.removeLayer(markers);
 
-        alert("Correction submitted");
-    }
+            alert("Correction submitted");
+        }
 
-    /* If the chosen correction is fix overlapping precincts then pop-up a marker to one that I found. */
-    /* TODO: Make this dynamic if we keep this. Thinking of making a markers array that has a value
+        /* If the chosen correction is fix overlapping precincts then pop-up a marker to one that I found. */
+        /* TODO: Make this dynamic if we keep this. Thinking of making a markers array that has a value
         for what kind of error it is and then it would show all markers with that error when you switch it.
         For now for GUI Demo this is fine.
      */
 
-    let markers = new L.FeatureGroup();
+        let markers = new L.FeatureGroup();
 
-    function changeCorrection() {
-        let e = document.getElementById("correction-list");
-        let chosenCorrection = e.options[e.selectedIndex].text;
-        e = document.getElementById("correction-election");
-        let chosenElection = e.options[e.selectedIndex].text;
-        e = document.getElementById("correction-state");
-        let chosenState = e.options[e.selectedIndex].text;
+        function changeCorrection() {
+            let e = document.getElementById("correction-list");
+            let chosenCorrection = e.options[e.selectedIndex].text;
+            e = document.getElementById("correction-election");
+            let chosenElection = e.options[e.selectedIndex].text;
+            e = document.getElementById("correction-state");
+            let chosenState = e.options[e.selectedIndex].text;
 
-        let election = "";
-        let url = "";
-        let state = "";
+            let election = "";
+            let url = "";
+            let state = "";
 
-        if (chosenElection == "2016 Presidential Election") {
-            election = "_pres_16";
-        } else if (chosenElection == "2016 Congressional Election") {
-            election = "_congress_16";
-        } else if (chosenElection == "2018 Congressional Election") {
-            election = "_congress_18";
-        }
-
-        if (chosenCorrection == "Show anomalous errors") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/" + chosenState;
-
-            $.get(url, function (data, status) {
-                createErrorMarkers(data.anomalousPrecincts, election, "anomalous");
-            });
-        } else if (chosenCorrection == "Show enclosed precincts") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/EnclosedPrecinctError/" + chosenState;
-
-            $.get(url, function (data, status) {
-                createErrorMarkers(data.enclosedPrecincts, election, "enclosed");
-            });
-        } else if (chosenCorrection == "Show overlapping precincts") {
-            url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/OverlappingPrecinctError/" + chosenState;
-            $.get(url, function (data, status) {
-                createErrorMarkers(data.overlappingPrecincts, election, "overlapping");
-            });
-        } else {
-            map.removeLayer(markers);
-        }
-    }
-
-    function createErrorMarkers(data, election, errorType) {
-        markers.clearLayers();
-        let temp;
-        let markerLocation;
-        let marker;
-        let label = "";
-
-        for (i in data) {
-            if (errorType == "anomalous") {
-                if ((data[i].errorIdentifier).includes(election)) {
-
-                } else {
-                    continue;
-                }
-                label = data[i].errorIdentifier.replace(/_/g, " ");
-
-            } else if (errorType == "enclosed") {
-                label = "Enclosed precinct: " + data[i].enclosedPrecinct
-                    + ", enclosing precinct: " + data[i].enclosingPrecinct;
-            } else if (errorType == "overlapping") {
-                label = data[i].precinct + " is overlapped by: " + data[i].overlappingPrecincts[0];
+            if (chosenElection == "2016 Presidential Election") {
+                election = "_pres_16";
+            } else if (chosenElection == "2016 Congressional Election") {
+                election = "_congress_16";
+            } else if (chosenElection == "2018 Congressional Election") {
+                election = "_congress_18";
             }
 
-            try {
-                temp = L.geoJson({
-                    "type": data[i].coordinates.type,
-                    "coordinates": data[i].coordinates.coordinates
+            if (chosenCorrection == "Show anomalous errors") {
+                url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/AnomalousError/" + chosenState;
+
+                $.get(url, function (data, status) {
+                    createErrorMarkers(data.anomalousPrecincts, election, "anomalous");
                 });
+            } else if (chosenCorrection == "Show enclosed precincts") {
+                url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/EnclosedPrecinctError/" + chosenState;
 
-                markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
-                marker = new L.Marker(markerLocation).on('click', markerClick);
+                $.get(url, function (data, status) {
+                    createErrorMarkers(data.enclosedPrecincts, election, "enclosed");
+                });
+            } else if (chosenCorrection == "Show overlapping precincts") {
+                url = "http://localhost:8080/election_data_quality_eagles_war_exploded/app/OverlappingPrecinctError/" + chosenState;
+                $.get(url, function (data, status) {
+                    createErrorMarkers(data.overlappingPrecincts, election, "overlapping");
+                });
+            } else {
+                map.removeLayer(markers);
+            }
+        }
 
-                marker.bindTooltip(label,
-                    {
-                        permanent: true,
-                        direction: 'right'
+        function createErrorMarkers(data, election, errorType) {
+            markers.clearLayers();
+            let temp;
+            let markerLocation;
+            let marker;
+            let label = "";
+
+            for (i in data) {
+                if (errorType == "anomalous") {
+                    if ((data[i].errorIdentifier).includes(election)) {
+
+                    } else {
+                        continue;
+                    }
+                    label = data[i].errorIdentifier.replace(/_/g, " ");
+
+                } else if (errorType == "enclosed") {
+                    label = "Enclosed precinct: " + data[i].enclosedPrecinct
+                        + ", enclosing precinct: " + data[i].enclosingPrecinct;
+                } else if (errorType == "overlapping") {
+                    label = data[i].precinct + " is overlapped by: " + data[i].overlappingPrecincts[0];
+                }
+
+                try {
+                    temp = L.geoJson({
+                        "type": data[i].coordinates.type,
+                        "coordinates": data[i].coordinates.coordinates
                     });
 
-                marker.addTo(markers);
-                map.addLayer(marker).on('click', markerClick);
-                markers.addTo(map);
-            } catch (e) {
-                continue;
+                    markerLocation = new L.LatLng(parseFloat(temp.getBounds().getCenter().lat), parseFloat(temp.getBounds().getCenter().lng));
+                    marker = new L.Marker(markerLocation).on('click', markerClick);
+
+                    marker.bindTooltip(label,
+                        {
+                            permanent: true,
+                            direction: 'right'
+                        });
+
+                    marker.addTo(markers);
+                    map.addLayer(marker).on('click', markerClick);
+                    markers.addTo(map);
+                } catch (e) {
+                    continue;
+                }
             }
         }
-    }
 
-    function markerClick(e) {
-        map.flyTo(e.latlng, 10);
-    }
-
-    function addNationalParkLayer() {
-
-        if (document.getElementById("NationalParksCheck").checked) {
-            $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/NationalParks/", function (data, status) {
-                nationalParksData = data;
-                // ADD THE NATIONAL PARKS LAYER
-                nationalParksLayer = L.layerGroup().addTo(map);
-                nationalParksJson = L.geoJson(nationalParksData).addTo(nationalParksLayer);
-                nationalParksJson = L.geoJson(nationalParksData, {
-                    style: styleNationalParks,
-                    onEachFeature: onEachFeature
-                }).addTo(mapLayers);
-            });
-        } else {
-            map.removeLayer(nationalParksJson);
-            map.removeLayer(nationalParksLayer);
-
+        function markerClick(e) {
+            map.flyTo(e.latlng, 10);
         }
 
-    }
+        function addNationalParkLayer() {
+
+            if (document.getElementById("NationalParksCheck").checked) {
+                $.get("http://localhost:8080/election_data_quality_eagles_war_exploded/app/NationalParks/", function (data, status) {
+                    nationalParksData = data;
+                    // ADD THE NATIONAL PARKS LAYER
+                    nationalParksLayer = L.layerGroup().addTo(map);
+                    nationalParksJson = L.geoJson(nationalParksData).addTo(nationalParksLayer);
+                    nationalParksJson = L.geoJson(nationalParksData, {
+                        style: styleNationalParks,
+                        onEachFeature: onEachFeature
+                    }).addTo(mapLayers);
+                });
+            } else {
+                map.removeLayer(nationalParksJson);
+                map.removeLayer(nationalParksLayer);
+
+            }
+
+        }
 
 
 </script>
